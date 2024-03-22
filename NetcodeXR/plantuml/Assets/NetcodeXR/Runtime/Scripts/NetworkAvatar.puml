@@ -1,0 +1,9 @@
+@startuml
+class VRIK {
+}
+class NetworkAvatar {
+    + SetAllIKTargetRig(controller:SolverTargetSynchronizer) : void
+    + <<override>> OnNetworkSpawn() : void
+    + <<override>> OnNetworkDespawn() : void
+}
+@enduml

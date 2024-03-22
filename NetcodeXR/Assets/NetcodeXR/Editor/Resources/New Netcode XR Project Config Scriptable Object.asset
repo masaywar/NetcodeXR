@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa44d5f748166df9b90b2e2399f6372b, type: 3}
+  m_Name: New Netcode XR Project Config Scriptable Object
+  m_EditorClassIdentifier: 
+  defaultXROrigin: {fileID: 1717954561962503725, guid: 94d3f2d8ff2a43471bb1c20be1ef3dba, type: 3}
+  defaultNetworkManager: {fileID: 4878625974882758703, guid: 6d25b34a824ee5fc2a1c97d2cb45344c, type: 3}
+  defaultEventSystem: {fileID: 5833814354567197805, guid: b2d84097032b72a6a8ae55c73f06a478, type: 3}
+  defaultNetcodeXRManager: {fileID: 3570866742714416228, guid: 4c9ce8270fbc6081b88e22a7943eaf5f, type: 3}
+  m_DefaultObjectPool: {fileID: 2676575907996754145, guid: ea2550840defc5f668db82bcfeea8b22, type: 3}
+  m_Plane: {fileID: 4479264823891311046, guid: 2e2f52c566680e38cbfd74e375d35956, type: 3}
+  m_Interactable: {fileID: 1924010866997561019, guid: fbb1adbd307e8fa6cbd58111a6f95a86, type: 3}
+  m_InitInteractableLocation: {x: 0, y: 0, z: 0}

@@ -1,0 +1,29 @@
+{
+    "name": "NetcodeXR.Runtime",
+    "rootNamespace": "NetcodeXR",
+    "references": [
+        "GUID:3b8ed52f1b5c64994af4c4e0aa4b6c4b",
+        "GUID:1491147abca9d7d4bb7105af628b223e",
+        "GUID:fe685ec1767f73d42b749ea8045bfe43",
+        "GUID:e0cd26848372d4e5c891c569017e11f1",
+        "GUID:7f7d1af65c2641843945d409d28f2e20",
+        "GUID:6d4810c931e638d489b58e9b332f3fb9",
+        "GUID:dc960734dc080426fa6612f1c5fe95f3",
+        "GUID:75469ad4d38634e559750d17036d5f7c"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.unity.netcode.gameobjects",
+            "expression": "1.8",
+            "define": "NETCODE"
+        }
+    ],
+    "noEngineReferences": false
+}

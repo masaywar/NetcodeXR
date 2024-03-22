@@ -1,0 +1,17 @@
+{
+    "name": "NetcodeXR.Editor",
+    "rootNamespace": "NetcodeXR",
+    "references": [
+        "GUID:fad9225a277e8764b81e4bda5c8fc27d",
+        "GUID:863766a9130a2da1f98a6474d68f4a7f"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -1,0 +1,26 @@
+@startuml
+enum EIKTargetTag {
+    SPINE_HEAD,
+    SPINE_PELVIS,
+    SPINE_CHEST,
+    LEFTARM_HAND,
+    LEFTARM_BENDING,
+    RIGHTARM_HAND,
+    RIGHTARM_BENDING,
+    LEFTLEG_FOOT,
+    LEFTLEG_BENDING,
+    RIGHTLEG_FOOT,
+    RIGHTLEG_BENDING,
+    XRORIGIN_POSITION,
+}
+class IKTarget {
+}
+class IKSolver {
+    + UpdatePositionAndRotation() : void
+}
+IKTarget --> "SolverTarget" EIKTargetTag
+IKTarget --> "TargetTransform" Transform
+IKSolver --> "TargetTag" EIKTargetTag
+IKSolver --> "SolverTarget" Transform
+IKSolver --> "FollowingTarget" Transform
+@enduml

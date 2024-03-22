@@ -1,0 +1,18 @@
+@startuml
+
+!include ./Assets/NetcodeXR/Runtime/Scripts/LocalPlayer.puml
+!include ./Assets/NetcodeXR/Runtime/Scripts/NetworkObjectPool.puml
+!include ./Assets/NetcodeXR/Runtime/Scripts/MessageHandlerManager.puml
+!include ./Assets/NetcodeXR/Runtime/Scripts/NetworkPlayer.puml
+!include ./Assets/NetcodeXR/Runtime/Scripts/ClientNetworkTransform.puml
+!include ./Assets/NetcodeXR/Runtime/Scripts/SolverTargetSynchronizer.puml
+!include ./Assets/NetcodeXR/Runtime/Scripts/NetworkInteractable.puml
+!include ./Assets/NetcodeXR/Runtime/Scripts/NetcodeXRManager.puml
+!include ./Assets/NetcodeXR/Runtime/Scripts/NetworkAvatar.puml
+!include ./Assets/NetcodeXR/Runtime/Scripts/NetcodeXRClasse.puml
+!include ./Assets/NetcodeXR/Runtime/Scripts/BlendShapeSynchronizer.puml
+!include ./Assets/NetcodeXR/Runtime/Scripts/NetworkVisibility.puml
+!include ./Assets/NetcodeXR/Runtime/Scripts/ClientNetworkAnimator.puml
+!include ./Assets/NetcodeXR/Runtime/Scripts/MessageHandler.puml
+
+

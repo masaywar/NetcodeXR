@@ -1,0 +1,9 @@
+@startuml
+class NetworkPlayer <<partial>> {
+    + <<override>> OnNetworkSpawn() : void
+    + <<override>> OnNetworkDespawn() : void
+    + SpawnAvatar() : void
+    + SpawnAvatarRpc(initPosition:Vector3, initRotation:Vector3, param:RpcParams) : void
+}
+NetworkPlayer --> "TransformSynchronizer" SolverTargetSynchronizer
+@enduml

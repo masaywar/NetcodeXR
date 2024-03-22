@@ -1,0 +1,19 @@
+@startuml
+class NetworkObjectPool {
+    + Awake() : void
+    + <<override>> OnNetworkSpawn() : void
+    + <<override>> OnNetworkDespawn() : void
+    + OnValidate() : void
+    + GetNetworkObject(prefab:GameObject, position:Vector3, rotation:Quaternion) : NetworkObject
+    + ReturnNetworkObject(networkObject:NetworkObject, prefab:GameObject) : void
+}
+struct PoolConfigObject {
+    + PrewarmCount : int
+}
+class PooledPrefabInstanceHandler {
+    + PooledPrefabInstanceHandler(prefab:GameObject, pool:NetworkObjectPool)
+}
+NetworkObjectPool --> "Singleton" NetworkObjectPool
+PoolConfigObject --> "Prefab" GameObject
+INetworkPrefabInstanceHandler <|-- PooledPrefabInstanceHandler
+@enduml

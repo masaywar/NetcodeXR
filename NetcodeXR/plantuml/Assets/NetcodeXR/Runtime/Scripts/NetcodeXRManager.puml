@@ -1,0 +1,31 @@
+@startuml
+class NetcodeXRManager {
+    + SpawnAvatarAtStart : bool <<get>>
+    + SpawnPlayerObjectAtStart : bool <<get>>
+    + Visibility : bool <<get>>
+    + VisibilityDistance : float <<get>>
+    +  <<event>> forceGrabChanged : ChangeOnForceGrab 
+    + ForceGrab : bool <<get>> <<set>>
+    + GetNetworkPlayerById(ownerId:ulong) : NetworkPlayer
+}
+class DefaultVisibilityManager {
+    + DefaultVisibilityManager(networkManager:NetworkManager, netcodeXRManager:NetcodeXRManager)
+    + <<override>> AddNetworkObject(networkObject:NetworkVisibility) : void
+    + <<override>> RemoveNetworkObject(networkObject:NetworkVisibility) : void
+}
+abstract class VisibilityManager {
+    + Distance : float <<get>> <<set>>
+    + VisibilityManager(networkManager:NetworkManager, netcodeXRManager:NetcodeXRManager)
+    + {abstract} AddNetworkObject(networkObject:NetworkVisibility) : void
+    + {abstract} RemoveNetworkObject(networkObject:NetworkVisibility) : void
+}
+class "Singleton`1"<T> {
+}
+class "Dictionary`2"<T1,T2> {
+}
+"Singleton`1" "<NetcodeXRManager>" <|-- NetcodeXRManager
+NetcodeXRManager o-> "defaultAvatar" NetworkAvatar
+NetcodeXRManager o-> "defaultPlayer" NetworkPlayer
+NetcodeXRManager --> "VisibilityManager" VisibilityManager
+VisibilityManager <|-- DefaultVisibilityManager
+@enduml

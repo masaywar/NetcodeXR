@@ -1,0 +1,11 @@
+@startuml
+class NetworkVisibility {
+    + ContinualCheckVisivility : bool <<get>>
+    + VisibilityDistance : float <<get>>
+    + IsNetworkVisibleTo(clientId:ulong) : bool
+    + NetworkShow(clientId:ulong) : void
+    + NetworkHide(clientId:ulong) : void
+    + <<override>> OnNetworkSpawn() : void
+    + <<override>> OnNetworkDespawn() : void
+}
+@enduml

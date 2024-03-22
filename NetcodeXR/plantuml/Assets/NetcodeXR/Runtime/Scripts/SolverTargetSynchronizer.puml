@@ -1,0 +1,11 @@
+@startuml
+class SolverTargetSynchronizer {
+    + OnEnable() : void
+    + <<override>> OnNetworkSpawn() : void
+    + <<override>> OnNetworkDespawn() : void
+    + GetSolver(targetTag:EIKTargetTag) : IKSolver
+}
+class "Dictionary`2"<T1,T2> {
+}
+SolverTargetSynchronizer --> "Avatar" NetworkAvatar
+@enduml

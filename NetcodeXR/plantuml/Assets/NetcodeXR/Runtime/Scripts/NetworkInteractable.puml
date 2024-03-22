@@ -1,0 +1,8 @@
+@startuml
+class NetworkInteractable <<partial>> {
+    + IsInteractable : bool <<get>>
+    + SetEnable(set:bool) : void
+    + SetOwnershipOnSelectEnterRpc(targetObjectId:ulong, newOwnerId:ulong, param:RpcParams) : void
+    + SetOwnershipOnSelectExitRpc(targetObjectId:ulong, newOwnerId:ulong, param:RpcParams) : void
+}
+@enduml

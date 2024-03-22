@@ -1,0 +1,5 @@
+@startuml
+class ClientNetworkTransform {
+}
+NetworkTransform <|-- ClientNetworkTransform
+@enduml

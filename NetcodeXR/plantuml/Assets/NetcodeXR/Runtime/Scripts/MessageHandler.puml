@@ -1,0 +1,18 @@
+@startuml
+abstract class MessageHandler {
+    + {abstract} MessageName : string <<get>>
+    + {abstract} OnReceivedMessage(clientId:ulong, reader:FastBufferReader) : void
+    + {abstract} SendMessage(dataToSend:MessageArgs) : void
+    + <<override>> OnNetworkSpawn() : void
+    + <<override>> OnNetworkDespawn() : void
+}
+struct MessageArgs {
+    + SenderObjectId : ulong
+    + SenderPlayerId : ulong
+    + NetworkSerialize(serializer:BufferSerializer<T>) : void
+    + <<override>> ToString() : string
+}
+NetworkBehaviour <|-- MessageHandler
+INetworkSerializable <|-- MessageArgs
+MessageArgs --> "Content" FixedString128Bytes
+@enduml

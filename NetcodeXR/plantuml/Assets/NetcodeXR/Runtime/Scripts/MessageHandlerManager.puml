@@ -1,0 +1,14 @@
+@startuml
+class MeesageHandlerManager {
+    + SubscribeMessageHandler(handler:MessageHandler) : void
+    + UnsubscribeMessageHandler(handler:MessageHandler) : void
+    + SendMessageCoroutine(messageName:string, dataToSend:MessageArgs) : IEnumerator
+    + SendMessageAsync(messageName:string, dataToSend:MessageArgs) : void
+}
+class "Singleton`1"<T> {
+}
+class "IReadOnlyDictionary`2"<T1,T2> {
+}
+"Singleton`1" "<MeesageHandlerManager>" <|-- MeesageHandlerManager
+MeesageHandlerManager --> "MessageHandlers<string,MessageHandler>" "IReadOnlyDictionary`2"
+@enduml

@@ -1,0 +1,8 @@
+@startuml
+class LocalPlayer <<partial>> {
+}
+class "Singleton`1"<T> {
+}
+"Singleton`1" "<LocalPlayer>" <|-- LocalPlayer
+LocalPlayer --> "RightInteractorObject" GameObject
+@enduml

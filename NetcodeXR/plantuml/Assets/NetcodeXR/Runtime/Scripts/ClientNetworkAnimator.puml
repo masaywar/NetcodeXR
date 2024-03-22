@@ -1,0 +1,5 @@
+@startuml
+class ClientNetworkAnimator {
+}
+NetworkAnimator <|-- ClientNetworkAnimator
+@enduml
