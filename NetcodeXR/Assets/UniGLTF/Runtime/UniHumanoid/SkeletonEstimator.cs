@@ -132,7 +132,7 @@ namespace UniHumanoid
             var legRight = GetLeg(hip_R);
 
             var spineToChest = new List<IBone>();
-            foreach(var x in spine.Traverse())
+            foreach (var x in spine.Traverse())
             {
                 spineToChest.Add(x);
                 if (x.Children.Count == 3) break;
@@ -200,7 +200,7 @@ namespace UniHumanoid
 
                 default:
                     skeleton.Set(HumanBodyBones.Neck, bones, neckToHead[0]);
-                    skeleton.Set(HumanBodyBones.Head, bones, neckToHead.Where(x => x.Parent.Children.Count==1).Last());
+                    skeleton.Set(HumanBodyBones.Head, bones, neckToHead.Where(x => x.Parent.Children.Count == 1).Last());
                     break;
             }
 

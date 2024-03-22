@@ -1,10 +1,9 @@
-using UnityEngine;
-using UnityEditor;
-using System.Linq;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEditor;
+using UnityEngine;
 #if UNITY_2019_1_OR_NEWER
-using UnityEditor.Graphs;
 #endif
 
 namespace UniGLTF

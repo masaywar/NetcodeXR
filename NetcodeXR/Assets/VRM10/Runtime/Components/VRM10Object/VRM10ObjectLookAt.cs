@@ -1,6 +1,6 @@
 using System;
-using UnityEngine;
 using UniGLTF.Extensions.VRMC_vrm;
+using UnityEngine;
 
 namespace UniVRM10
 {

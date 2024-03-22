@@ -5,7 +5,7 @@ using System.Text;
 
 namespace UniJSON
 {
-    public class StringBuilderStore: IStore
+    public class StringBuilderStore : IStore
     {
         StringBuilder m_sb;
 
@@ -52,7 +52,7 @@ namespace UniJSON
 
         public void Write(IEnumerable<char> src)
         {
-            foreach(var c in src)
+            foreach (var c in src)
             {
                 m_sb.Append(c);
             }

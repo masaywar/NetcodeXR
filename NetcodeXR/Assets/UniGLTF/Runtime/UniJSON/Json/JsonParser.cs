@@ -155,7 +155,7 @@ namespace UniJSON
             // fix array range
             var count = current.Bytes.Offset + 1 - segment.Bytes.Offset;
             array.SetValueBytesCount(count);
-            
+
             return array;
         }
 

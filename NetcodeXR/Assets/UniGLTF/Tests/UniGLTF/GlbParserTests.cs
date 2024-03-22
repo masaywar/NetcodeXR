@@ -1,7 +1,6 @@
-﻿using System;
+﻿using NUnit.Framework;
 using System.IO;
 using System.Linq;
-using NUnit.Framework;
 
 namespace UniGLTF
 {
@@ -71,8 +70,8 @@ namespace UniGLTF
 
                 Assert.Throws<GlbParseException>(() =>
                 {
-                // 再パース
-                var data2 = new GlbBinaryParser(mod, Path.GetFileNameWithoutExtension(path)).Parse();
+                    // 再パース
+                    var data2 = new GlbBinaryParser(mod, Path.GetFileNameWithoutExtension(path)).Parse();
                 });
             }
         }

@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using NetcodeXR.Utility;
 using Unity.Netcode;
-using UnityEngine;
 
 namespace NetcodeXR
 {
@@ -16,24 +12,24 @@ namespace NetcodeXR
         {
             base.OnNetworkSpawn();
 
-            if(!NetcodeXRManager.Instance.Visibility)
+            if (!NetcodeXRManager.Instance.Visibility)
             {
                 return;
             }
 
-            if(IsServer)
+            if (IsServer)
                 NetcodeXRManager.Instance.VisibilityManager.AddNetworkObject(this);
         }
 
         public override void OnNetworkDespawn()
         {
 
-            if(!NetcodeXRManager.Instance.Visibility)
+            if (!NetcodeXRManager.Instance.Visibility)
             {
                 return;
             }
 
-            if(IsServer)
+            if (IsServer)
                 NetcodeXRManager.Instance.VisibilityManager.RemoveNetworkObject(this);
 
             base.OnNetworkDespawn();

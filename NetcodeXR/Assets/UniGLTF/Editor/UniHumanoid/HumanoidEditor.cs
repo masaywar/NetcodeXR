@@ -1,10 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 using System.IO;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
-using System;
 
 namespace UniHumanoid
 {

@@ -11,8 +11,8 @@ namespace VRMShaders.VRM10.MToon10.Tests
             var delta = 0.001f;
 
             // 0.x default
-            Assert.AreEqual(0.95f,MToon10Migrator.MigrateToShadingToony(0.9f, 0f), delta);
-            Assert.AreEqual(-0.05f,MToon10Migrator.MigrateToShadingShift(0.9f, 0f), delta);
+            Assert.AreEqual(0.95f, MToon10Migrator.MigrateToShadingToony(0.9f, 0f), delta);
+            Assert.AreEqual(-0.05f, MToon10Migrator.MigrateToShadingShift(0.9f, 0f), delta);
 
             // lambert
             Assert.AreEqual(0.5f, MToon10Migrator.MigrateToShadingToony(0, 0), delta);

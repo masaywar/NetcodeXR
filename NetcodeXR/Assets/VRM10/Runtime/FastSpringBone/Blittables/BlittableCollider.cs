@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace UniVRM10.FastSpringBones.Blittables
 {
@@ -9,7 +8,7 @@ namespace UniVRM10.FastSpringBones.Blittables
     /// </summary>
     [Serializable]
     public struct BlittableCollider
-    {   
+    {
         public BlittableColliderType colliderType;
         public Vector3 offset;
         public float radius;

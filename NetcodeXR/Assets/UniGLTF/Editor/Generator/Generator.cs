@@ -64,10 +64,10 @@ namespace GenerateUniGLTFSerialization
         static void WriteAllTextForce(string path, string contents)
         {
             if (string.IsNullOrEmpty(path)) return;
-            
+
             var dir = Path.GetDirectoryName(path);
             if (string.IsNullOrEmpty(dir)) return;
-            
+
             var dirInfo = new DirectoryInfo(dir);
             if (!dirInfo.Exists)
             {
@@ -78,15 +78,15 @@ namespace GenerateUniGLTFSerialization
             {
                 File.Delete(path);
             }
-            
+
             File.WriteAllText(path, contents, Encoding.UTF8);
         }
-        
+
         public static void GenerateTo(JsonSchemaSource root, DirectoryInfo formatDir, DirectoryInfo serializerDir)
         {
             CleanDirectory(formatDir);
             CleanDirectory(serializerDir);
-            
+
             foreach (var s in root.Traverse())
             {
                 // title を掃除

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace VRIKBuilder
@@ -24,7 +22,7 @@ namespace VRIKBuilder
 
         public float rayStartYOffset = 0;
         public float rayLength = 1.5f;
-        
+
         float footSpacing;
         Vector3 oldPosition, currentPosition, newPosition;
         Vector3 oldNormal, currentNormal, newNormal;
@@ -48,19 +46,19 @@ namespace VRIKBuilder
             Ray ray = new Ray(m_Body.position + (m_Body.right * footSpacing) + Vector3.up * rayStartYOffset, Vector3.down);
 
             Debug.DrawRay(m_Body.position + (m_Body.right * footSpacing) + Vector3.up * rayStartYOffset, Vector3.down);
-                
+
             if (Physics.Raycast(ray, out RaycastHit info, rayLength, m_TerrainLayer.value))
             {
                 if (Vector3.Distance(newPosition, info.point) > m_StepDistance && !m_OtherFoot.IsMoving() && lerp >= 1)
                 {
                     lerp = 0;
-                    Vector3 direction = Vector3.ProjectOnPlane(info.point - currentPosition,Vector3.up).normalized;
+                    Vector3 direction = Vector3.ProjectOnPlane(info.point - currentPosition, Vector3.up).normalized;
 
                     float angle = Vector3.Angle(m_Body.forward, m_Body.InverseTransformDirection(direction));
 
                     isMovingForward = angle < 50 || angle > 130;
 
-                    if(isMovingForward)
+                    if (isMovingForward)
                     {
                         newPosition = info.point + direction * m_StepLength + n_FootOffset;
                         newNormal = info.normal;

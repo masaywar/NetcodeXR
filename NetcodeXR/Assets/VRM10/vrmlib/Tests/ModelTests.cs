@@ -1,6 +1,6 @@
-using VrmLib;
 using NUnit.Framework;
 using UnityEngine;
+using VrmLib;
 
 namespace VrmLibTests
 {

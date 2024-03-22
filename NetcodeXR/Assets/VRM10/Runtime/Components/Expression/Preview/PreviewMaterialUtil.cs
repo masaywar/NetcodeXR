@@ -38,7 +38,7 @@ namespace UniVRM10
                                 hasError = true;
                                 continue;
                             }
-                            
+
                             item.PropMap.Add(bindType, new PropItem
                             {
                                 Name = name,

@@ -25,12 +25,12 @@ namespace UniVRM10
             return new MaterialDescriptor(
                 GltfMaterialImportUtils.ImportMaterialName(i, null),
                 BuiltInGltfPbrMaterialImporter.Shader,
-                null, 
+                null,
                 new Dictionary<string, TextureDescriptor>(),
                 new Dictionary<string, float>(),
                 new Dictionary<string, Color>(),
                 new Dictionary<string, Vector4>(),
-                new Action<Material>[]{});
+                new Action<Material>[] { });
         }
 
         public MaterialDescriptor GetGltfDefault()

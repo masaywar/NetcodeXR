@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using System.Diagnostics;
 
 
 #if UNITY_EDITOR
@@ -12,17 +9,17 @@ namespace NetcodeXR.Utility
 {
     public static class TagHelper
     {
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         public static void AddTag(params string[] inTags)
         {
             Object[] asset = AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/TagManager.asset");
-        
+
             if ((asset != null) && (asset.Length > 0))
             {
                 SerializedObject so = new SerializedObject(asset[0]);
                 SerializedProperty tags = so.FindProperty("tags");
 
-                foreach(var tag in inTags)
+                foreach (var tag in inTags)
                 {
                     for (int i = 0; i < tags.arraySize; ++i)
                     {
@@ -40,13 +37,13 @@ namespace NetcodeXR.Utility
                 so.Update();
             }
         }
-        #endif
+#endif
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         public static bool IsTagDefined(string inTag)
         {
             Object[] asset = AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/TagManager.asset");
-        
+
             if ((asset != null) && (asset.Length > 0))
             {
                 SerializedObject so = new SerializedObject(asset[0]);
@@ -63,6 +60,6 @@ namespace NetcodeXR.Utility
 
             return false;
         }
-        #endif
+#endif
     }
 }

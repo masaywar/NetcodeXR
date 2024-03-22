@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using System;
 using VRMShaders;
 
 
@@ -82,7 +82,7 @@ namespace UniVRM10
         private void Initialize(GameObject prefab)
         {
             hasError = false;
-            
+
             //Debug.LogFormat("[PreviewSceneManager.Initialize] {0}", prefab);
             Prefab = prefab;
 
@@ -102,14 +102,14 @@ namespace UniVRM10
                 {
                     dst = new Material(src);
                     map.Add(src, dst);
-                    
+
                     if (!PreviewMaterialUtil.TryCreateForPreview(dst, out var previewMaterialItem))
                     {
                         hasError = true;
                         // Return cloned material for preview
                         return dst;
                     }
-                    
+
                     m_materialMap.Add(src.name, previewMaterialItem);
 
                     //Debug.LogFormat("add material {0}", src.name);

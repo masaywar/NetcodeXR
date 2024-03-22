@@ -11,7 +11,7 @@ namespace VRMShaders.VRM10.MToon10.Editor
             EditorGUILayout.LabelField(label, EditorStyles.boldLabel);
             EditorGUILayout.BeginVertical(GUI.skin.box);
         }
-        
+
         public void Dispose()
         {
             EditorGUILayout.EndVertical();

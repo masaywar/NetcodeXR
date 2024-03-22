@@ -1,20 +1,19 @@
 using System.Collections.Generic;
 using UnityEngine;
-using System.Text;
 
 namespace NetcodeXR
 {
-    using Utility;
     using Unity.Netcode;
+    using Utility;
 
     [DefaultExecutionOrder(-20)]
     public class NetcodeXRManager : NetworkBehaviour
     {
         private static NetcodeXRManager m_Instance = null;
         public static NetcodeXRManager Instance => m_Instance;
-       
 
-        public NetworkAvatar defaultAvatar = null;        
+
+        public NetworkAvatar defaultAvatar = null;
         public NetworkPlayer defaultPlayer = null;
 
         private NetworkManager m_NetworkManager = null;
@@ -22,27 +21,27 @@ namespace NetcodeXR
         [SerializeField]
         private bool m_SpawnAvatarAtStart = true;
         public bool SpawnAvatarAtStart => m_SpawnAvatarAtStart;
-        
+
         [SerializeField]
         private bool m_SpawnPlayerObjectAtStart = true;
         public bool SpawnPlayerObjectAtStart => m_SpawnPlayerObjectAtStart;
 
         [SerializeField, ReadOnly(true)]
-        private bool m_Visibility;
+        private bool m_Visibility = true; 
         public bool Visibility => m_Visibility;
 
         [SerializeField]
-        private float m_VisibilityDistance;
+        private float m_VisibilityDistance = 0f;
         public float VisibilityDistance => m_VisibilityDistance;
 
         private Dictionary<ulong, NetworkPlayer> m_PlayerSpawnedObjects = new Dictionary<ulong, NetworkPlayer>();
         public Dictionary<ulong, NetworkPlayer> PlayerSpawnedObjects => m_PlayerSpawnedObjects;
 
         public delegate void ChangeOnForceGrab(bool isForceGrab);
-        public event ChangeOnForceGrab forceGrabChanged;
+        public event ChangeOnForceGrab forceGrabChanged = null;
 
-        private VisibilityManager m_VisibilityManager;
-        public VisibilityManager VisibilityManager => m_VisibilityManager; 
+        private VisibilityManager m_VisibilityManager = null;
+        public VisibilityManager VisibilityManager => m_VisibilityManager;
 
         [SerializeField]
         private bool m_ForceGrab = true;
@@ -58,7 +57,7 @@ namespace NetcodeXR
 
         private void Awake()
         {
-            if(m_Instance == null)
+            if (m_Instance == null)
             {
                 m_Instance = this;
             }
@@ -71,11 +70,11 @@ namespace NetcodeXR
 
         private void OnEnable()
         {
-            if(NetworkManager.Singleton == null)
+            if (NetworkManager.Singleton == null)
             {
-                if(m_NetworkManager == null)
+                if (m_NetworkManager == null)
                     m_NetworkManager = FindObjectOfType<NetworkManager>();
-                
+
                 m_NetworkManager.SetSingleton();
             }
 
@@ -97,15 +96,15 @@ namespace NetcodeXR
 
         private void OnValidate()
         {
-            if(m_NetworkManager == null)
+            if (m_NetworkManager == null)
                 m_NetworkManager = FindObjectOfType<NetworkManager>();
-            
-            if(m_NetworkManager == null)
+
+            if (m_NetworkManager == null)
             {
                 return;
             }
 
-            if(m_NetworkManager.NetworkConfig.PlayerPrefab != null)
+            if (m_NetworkManager.NetworkConfig.PlayerPrefab != null)
             {
                 m_NetworkManager.NetworkConfig.PlayerPrefab = null;
             }
@@ -113,7 +112,7 @@ namespace NetcodeXR
 
         private void OnServerStarted()
         {
-            if(m_NetworkManager.IsServer && m_Visibility && !m_NetworkManager.ServerIsHost)
+            if (m_NetworkManager.IsServer && m_Visibility && !m_NetworkManager.ServerIsHost)
             {
                 m_VisibilityManager = new DefaultVisibilityManager(m_NetworkManager, this);
             }
@@ -133,7 +132,7 @@ namespace NetcodeXR
 
         private void OnNetworkConnect(NetworkManager networkManager, ConnectionEventData data)
         {
-            switch(data.EventType)
+            switch (data.EventType)
             {
                 case ConnectionEvent.ClientConnected:
                     NetcodeXRLog.Log($"Client {data.ClientId} Connected!");
@@ -157,12 +156,12 @@ namespace NetcodeXR
                 default: break;
             }
         }
-      
+
         private void OnClientConnected(ulong clientId)
         {
-            if(NetworkManager.Singleton.IsServer)
+            if (NetworkManager.Singleton.IsServer)
             {
-                if(clientId == NetworkManager.ServerClientId && !NetworkManager.Singleton.IsClient)
+                if (clientId == NetworkManager.ServerClientId && !NetworkManager.Singleton.IsClient)
                 {
                     return;
                 }
@@ -186,40 +185,40 @@ namespace NetcodeXR
         {
             /**
             !TODO
-            **/ 
+            **/
         }
 
         private void OnPeerConnected(ulong clientId)
         {
             /**
             !TODO
-            **/ 
+            **/
         }
 
         private void OnPeerDisconnected(ulong clientId)
         {
             /**
             !TODO
-            **/ 
+            **/
         }
 
         private void OnClientStarted()
         {
             /**
             !TODO
-            **/ 
+            **/
         }
 
         private void OnClientStopped(bool value)
         {
             /**
             !TODO
-            **/ 
+            **/
         }
 
         public NetworkPlayer GetNetworkPlayerById(ulong ownerId)
         {
-            if(m_PlayerSpawnedObjects.TryGetValue(ownerId, out var returnValue))
+            if (m_PlayerSpawnedObjects.TryGetValue(ownerId, out var returnValue))
             {
                 return returnValue;
             }
@@ -230,6 +229,8 @@ namespace NetcodeXR
 
     public class DefaultVisibilityManager : VisibilityManager
     {
+        private float m_Distance = 10f;
+
         public DefaultVisibilityManager(NetworkManager networkManager, NetcodeXRManager netcodeXRManager) : base(networkManager, netcodeXRManager)
         {
             m_NetworkManager = networkManager;
@@ -250,54 +251,47 @@ namespace NetcodeXR
         protected override bool CheckVisibility(NetworkClient networkClient, NetworkVisibility checkedObject)
         {
             var playerObjectTf = networkClient.PlayerObject.transform;
-            
+
             return Vector3.Distance(playerObjectTf.position, checkedObject.transform.position) <= m_Distance;
         }
 
         protected override void Update()
         {
-            if(!NetworkManager.Singleton.IsServer) return;
+            if (!NetworkManager.Singleton.IsServer) return;
 
-            foreach(var client in NetworkManager.Singleton.ConnectedClientsList)
+            foreach (var client in NetworkManager.Singleton.ConnectedClientsList)
             {
-                if(client.ClientId == NetworkManager.Singleton.LocalClientId)
+                if (client.ClientId == NetworkManager.Singleton.LocalClientId)
                 {
                     continue;
                 }
 
-                foreach(var spawnedObject in m_SpawnedObjectList)
+                foreach (var spawnedObject in m_SpawnedObjectList)
                 {
                     bool isVisibile = CheckVisibility(client, spawnedObject);
                     bool shouldVisible = spawnedObject.IsNetworkVisibleTo(client.ClientId);
 
-                    if (shouldVisible!=isVisibile)
+                    if (shouldVisible != isVisibile)
                     {
-                        if(isVisibile)
+                        if (isVisibile)
                         {
-                            spawnedObject.NetworkShow(client.ClientId);    
+                            spawnedObject.NetworkShow(client.ClientId);
                         }
                         else
                         {
                             spawnedObject.NetworkHide(client.ClientId);
                         }
-                    }                    
+                    }
                 }
             }
         }
-    
+
     }
 
     public abstract class VisibilityManager
     {
-        protected float m_Distance;
-        public float Distance
-        {
-            get => m_Distance;
-            set => m_Distance = value;
-        }
-
-        protected NetworkManager m_NetworkManager;
-        protected NetcodeXRManager m_NetcodeXRManager;
+        protected NetworkManager m_NetworkManager = null;
+        protected NetcodeXRManager m_NetcodeXRManager = null;
 
         public VisibilityManager(NetworkManager networkManager, NetcodeXRManager netcodeXRManager)
         {
@@ -305,7 +299,7 @@ namespace NetcodeXR
             m_NetcodeXRManager = netcodeXRManager;
 
             m_NetworkManager.NetworkTickSystem.Tick += Update;
-        } 
+        }
 
         protected HashSet<NetworkVisibility> m_SpawnedObjectList = new HashSet<NetworkVisibility>();
 
@@ -313,9 +307,9 @@ namespace NetcodeXR
         protected abstract bool CheckVisibility(NetworkClient networkClient, NetworkVisibility checkedObject);
 
         protected abstract void Update();
-        
+
         public abstract void AddNetworkObject(NetworkVisibility networkObject);
         public abstract void RemoveNetworkObject(NetworkVisibility networkObject);
-       
+
     }
 }

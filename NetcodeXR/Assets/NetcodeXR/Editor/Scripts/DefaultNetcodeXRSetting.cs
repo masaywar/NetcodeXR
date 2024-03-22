@@ -1,22 +1,21 @@
-using System.Collections.Generic;
-using UnityEngine;
 using UnityEditor;
-using UnityEngine.SceneManagement;
 using UnityEditor.SceneManagement;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace NetcodeXR.NetcodeXREditor
 {
     [CreateAssetMenu(menuName = "NetcodeXR/Create Default Scene Setting Asset")]
     public class DefaultNetcodeXRSetting : NetcodeXRProjectConfigScriptableObject
     {
-      
+
         [Header("XR Interaction Toolkits")]
         [SerializeField] private GameObject defaultXROrigin;
 
         [Header("Netcode")]
         [SerializeField] private GameObject defaultNetworkManager;
         [SerializeField] private GameObject defaultEventSystem;
-        [SerializeField] private GameObject defaultNetcodeXRManager;        
+        [SerializeField] private GameObject defaultNetcodeXRManager;
 
         [Header("Scene")]
         [SerializeField] private GameObject m_DefaultObjectPool;
@@ -29,22 +28,22 @@ namespace NetcodeXR.NetcodeXREditor
             Scene currentScene = EditorSceneManager.GetActiveScene();
 
             var objects = currentScene.GetRootGameObjects();
-            
-            foreach(var obj in objects)
+
+            foreach (var obj in objects)
             {
-                DestroyImmediate(obj);            
+                DestroyImmediate(obj);
             }
 
             ConvertToPrefabInstanceSettings convertToPrefabInstanceSettings = new ConvertToPrefabInstanceSettings();
             convertToPrefabInstanceSettings.changeRootNameToAssetName = true;
 
-            if(!isServer)
+            if (!isServer)
             {
                 var xrorigin = Instantiate(defaultXROrigin, Vector3.zero, Quaternion.identity);
                 PrefabUtility.ConvertToPrefabInstance(xrorigin, defaultXROrigin, convertToPrefabInstanceSettings, InteractionMode.AutomatedAction);
                 var plane = Instantiate(m_Plane, Vector3.zero, Quaternion.identity);
                 var interactable = Instantiate(m_Interactable, m_InitInteractableLocation, Quaternion.identity);
-            
+
                 var light = new GameObject("Directional Light");
                 light.transform.position = new Vector3(0, 3, 0);
                 light.transform.rotation = Quaternion.Euler(50, -30, 0);
@@ -63,7 +62,7 @@ namespace NetcodeXR.NetcodeXREditor
             var networkManager = Instantiate(defaultNetworkManager);
             PrefabUtility.ConvertToPrefabInstance(networkManager, defaultNetworkManager, convertToPrefabInstanceSettings, InteractionMode.AutomatedAction);
             Instantiate(defaultEventSystem);
-            
+
             var netcodeXRManager = Instantiate(defaultNetcodeXRManager);
             PrefabUtility.ConvertToPrefabInstance(netcodeXRManager, defaultNetcodeXRManager, convertToPrefabInstanceSettings, InteractionMode.AutomatedAction);
 

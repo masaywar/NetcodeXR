@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 
 namespace VrmLib
@@ -24,5 +23,5 @@ namespace VrmLib
             }
             return index;
         }
-     }
+    }
 }

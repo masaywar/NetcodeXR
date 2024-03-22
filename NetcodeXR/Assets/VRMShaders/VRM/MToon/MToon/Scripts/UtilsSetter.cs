@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -82,7 +81,7 @@ namespace MToon
                 material.SetFloat(PropUvAnimScrollY, textureOptions.UvAnimationScrollYSpeedValue);
                 material.SetFloat(PropUvAnimRotation, textureOptions.UvAnimationRotationSpeedValue);
             }
-            
+
             ValidateProperties(material, isBlendModeChangedByUser: false);
         }
 
@@ -95,15 +94,15 @@ namespace MToon
         public static void ValidateProperties(Material material, bool isBlendModeChangedByUser = false)
         {
             SetRenderMode(material,
-                (RenderMode) material.GetFloat(PropBlendMode),
-                material.renderQueue - GetRenderQueueRequirement((RenderMode) material.GetFloat(PropBlendMode)).DefaultValue,
+                (RenderMode)material.GetFloat(PropBlendMode),
+                material.renderQueue - GetRenderQueueRequirement((RenderMode)material.GetFloat(PropBlendMode)).DefaultValue,
                 useDefaultRenderQueue: isBlendModeChangedByUser);
             SetNormalMapping(material, material.GetTexture(PropBumpMap), material.GetFloat(PropBumpScale));
             SetOutlineMode(material,
-                (OutlineWidthMode) material.GetFloat(PropOutlineWidthMode),
-                (OutlineColorMode) material.GetFloat(PropOutlineColorMode));
-            SetDebugMode(material, (DebugMode) material.GetFloat(PropDebugMode));
-            SetCullMode(material, (CullMode) material.GetFloat(PropCullMode));
+                (OutlineWidthMode)material.GetFloat(PropOutlineWidthMode),
+                (OutlineColorMode)material.GetFloat(PropOutlineColorMode));
+            SetDebugMode(material, (DebugMode)material.GetFloat(PropDebugMode));
+            SetCullMode(material, (CullMode)material.GetFloat(PropCullMode));
 
             var mainTex = material.GetTexture(PropMainTex);
             var shadeTex = material.GetTexture(PropShadeTexture);
@@ -115,8 +114,8 @@ namespace MToon
 
         private static void SetDebugMode(Material material, DebugMode debugMode)
         {
-            SetValue(material, PropDebugMode, (int) debugMode);
-            
+            SetValue(material, PropDebugMode, (int)debugMode);
+
             switch (debugMode)
             {
                 case DebugMode.None:
@@ -137,14 +136,14 @@ namespace MToon
         private static void SetRenderMode(Material material, RenderMode renderMode, int renderQueueOffset,
             bool useDefaultRenderQueue)
         {
-            SetValue(material, PropBlendMode, (int) renderMode);
-            
+            SetValue(material, PropBlendMode, (int)renderMode);
+
             switch (renderMode)
             {
                 case RenderMode.Opaque:
                     material.SetOverrideTag(TagRenderTypeKey, TagRenderTypeValueOpaque);
-                    material.SetInt(PropSrcBlend, (int) BlendMode.One);
-                    material.SetInt(PropDstBlend, (int) BlendMode.Zero);
+                    material.SetInt(PropSrcBlend, (int)BlendMode.One);
+                    material.SetInt(PropDstBlend, (int)BlendMode.Zero);
                     material.SetInt(PropZWrite, EnabledIntValue);
                     material.SetInt(PropAlphaToMask, DisabledIntValue);
                     SetKeyword(material, KeyAlphaTestOn, false);
@@ -153,8 +152,8 @@ namespace MToon
                     break;
                 case RenderMode.Cutout:
                     material.SetOverrideTag(TagRenderTypeKey, TagRenderTypeValueTransparentCutout);
-                    material.SetInt(PropSrcBlend, (int) BlendMode.One);
-                    material.SetInt(PropDstBlend, (int) BlendMode.Zero);
+                    material.SetInt(PropSrcBlend, (int)BlendMode.One);
+                    material.SetInt(PropDstBlend, (int)BlendMode.Zero);
                     material.SetInt(PropZWrite, EnabledIntValue);
                     material.SetInt(PropAlphaToMask, EnabledIntValue);
                     SetKeyword(material, KeyAlphaTestOn, true);
@@ -163,8 +162,8 @@ namespace MToon
                     break;
                 case RenderMode.Transparent:
                     material.SetOverrideTag(TagRenderTypeKey, TagRenderTypeValueTransparent);
-                    material.SetInt(PropSrcBlend, (int) BlendMode.SrcAlpha);
-                    material.SetInt(PropDstBlend, (int) BlendMode.OneMinusSrcAlpha);
+                    material.SetInt(PropSrcBlend, (int)BlendMode.SrcAlpha);
+                    material.SetInt(PropDstBlend, (int)BlendMode.OneMinusSrcAlpha);
                     material.SetInt(PropZWrite, DisabledIntValue);
                     material.SetInt(PropAlphaToMask, DisabledIntValue);
                     SetKeyword(material, KeyAlphaTestOn, false);
@@ -173,8 +172,8 @@ namespace MToon
                     break;
                 case RenderMode.TransparentWithZWrite:
                     material.SetOverrideTag(TagRenderTypeKey, TagRenderTypeValueTransparent);
-                    material.SetInt(PropSrcBlend, (int) BlendMode.SrcAlpha);
-                    material.SetInt(PropDstBlend, (int) BlendMode.OneMinusSrcAlpha);
+                    material.SetInt(PropSrcBlend, (int)BlendMode.SrcAlpha);
+                    material.SetInt(PropDstBlend, (int)BlendMode.OneMinusSrcAlpha);
                     material.SetInt(PropZWrite, EnabledIntValue);
                     material.SetInt(PropAlphaToMask, DisabledIntValue);
                     SetKeyword(material, KeyAlphaTestOn, false);
@@ -199,12 +198,12 @@ namespace MToon
         private static void SetOutlineMode(Material material, OutlineWidthMode outlineWidthMode,
             OutlineColorMode outlineColorMode)
         {
-            SetValue(material, PropOutlineWidthMode, (int) outlineWidthMode);
-            SetValue(material, PropOutlineColorMode, (int) outlineColorMode);
-            
+            SetValue(material, PropOutlineWidthMode, (int)outlineWidthMode);
+            SetValue(material, PropOutlineColorMode, (int)outlineColorMode);
+
             var isFixed = outlineColorMode == OutlineColorMode.FixedColor;
             var isMixed = outlineColorMode == OutlineColorMode.MixedLighting;
-            
+
             switch (outlineWidthMode)
             {
                 case OutlineWidthMode.None:
@@ -232,27 +231,27 @@ namespace MToon
         {
             SetTexture(material, PropBumpMap, bumpMap);
             SetValue(material, PropBumpScale, bumpScale);
-            
+
             SetKeyword(material, KeyNormalMap, bumpMap != null);
         }
 
         private static void SetCullMode(Material material, CullMode cullMode)
         {
-            SetValue(material, PropCullMode, (int) cullMode);
-            
+            SetValue(material, PropCullMode, (int)cullMode);
+
             switch (cullMode)
             {
                 case CullMode.Back:
-                    material.SetInt(PropCullMode, (int) CullMode.Back);
-                    material.SetInt(PropOutlineCullMode, (int) CullMode.Front);
+                    material.SetInt(PropCullMode, (int)CullMode.Back);
+                    material.SetInt(PropOutlineCullMode, (int)CullMode.Front);
                     break;
                 case CullMode.Front:
-                    material.SetInt(PropCullMode, (int) CullMode.Front);
-                    material.SetInt(PropOutlineCullMode, (int) CullMode.Back);
+                    material.SetInt(PropCullMode, (int)CullMode.Front);
+                    material.SetInt(PropOutlineCullMode, (int)CullMode.Back);
                     break;
                 case CullMode.Off:
-                    material.SetInt(PropCullMode, (int) CullMode.Off);
-                    material.SetInt(PropOutlineCullMode, (int) CullMode.Front);
+                    material.SetInt(PropCullMode, (int)CullMode.Off);
+                    material.SetInt(PropOutlineCullMode, (int)CullMode.Front);
                     break;
             }
         }

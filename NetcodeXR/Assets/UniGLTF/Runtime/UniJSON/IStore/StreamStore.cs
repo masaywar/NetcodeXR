@@ -4,7 +4,7 @@ using System.Text;
 
 namespace UniJSON
 {
-    public class StreamStore: IStore
+    public class StreamStore : IStore
     {
         Stream m_s;
         BinaryWriter m_w;
@@ -62,7 +62,7 @@ namespace UniJSON
             m_w.Write(bytes.Array, bytes.Offset, bytes.Count);
         }
 
-#region BigEndian
+        #region BigEndian
         public void WriteBigEndian(int value)
         {
             throw new NotImplementedException();
@@ -102,9 +102,9 @@ namespace UniJSON
         {
             throw new NotImplementedException();
         }
-#endregion
+        #endregion
 
-#region LittleEndian
+        #region LittleEndian
         public void WriteLittleEndian(long value)
         {
             m_w.Write(value);
@@ -144,6 +144,6 @@ namespace UniJSON
         {
             m_w.Write(value);
         }
-#endregion
+        #endregion
     }
 }

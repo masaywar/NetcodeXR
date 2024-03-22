@@ -24,7 +24,7 @@ namespace VrmLib
             {
                 if (In.ComponentType == AccessorValueType.FLOAT)
                 {
-                    var times =  In.Bytes.Reinterpret<Single>(1);
+                    var times = In.Bytes.Reinterpret<Single>(1);
                     return times[times.Length - 1];
                 }
                 else

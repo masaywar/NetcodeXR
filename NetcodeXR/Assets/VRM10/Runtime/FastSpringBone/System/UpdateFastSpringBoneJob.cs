@@ -22,7 +22,7 @@ namespace UniVRM10.FastSpringBones.System
         [NativeDisableParallelForRestriction] public NativeArray<BlittableTransform> Transforms;
 
         public float DeltaTime;
-        
+
         public unsafe void Execute(int index)
         {
             var spring = Springs[index];
@@ -80,11 +80,11 @@ namespace UniVRM10.FastSpringBones.System
                     var maxColliderScale = Mathf.Max(Mathf.Max(Mathf.Abs(colliderScale.x), Mathf.Abs(colliderScale.y)), Mathf.Abs(colliderScale.z));
                     var worldPosition = colliderTransform.localToWorldMatrix.MultiplyPoint3x4(collider.offset);
                     var worldTail = colliderTransform.localToWorldMatrix.MultiplyPoint3x4(collider.tail);
-                    
+
                     switch (collider.colliderType)
                     {
                         case BlittableColliderType.Sphere:
-                            ResolveSphereCollision(joint, collider,  worldPosition, headTransform, maxColliderScale, logic, ref nextTail);
+                            ResolveSphereCollision(joint, collider, worldPosition, headTransform, maxColliderScale, logic, ref nextTail);
                             break;
                         case BlittableColliderType.Capsule:
                             ResolveCapsuleCollision(worldTail, worldPosition, headTransform, joint, collider, maxColliderScale, logic, ref nextTail);

@@ -1,6 +1,5 @@
-using System.Text;
 using Newtonsoft.Json;
-using Unity.Profiling;
+using System.Text;
 
 
 namespace NetcodeXR.Utility
@@ -22,8 +21,8 @@ namespace NetcodeXR.Utility
         {
             var asString = Encoding.Unicode.GetString(source);
             return JsonConvert.DeserializeObject<T>(asString);
-        } 
+        }
     }
 
-    
+
 }

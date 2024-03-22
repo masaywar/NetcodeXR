@@ -2,25 +2,24 @@
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 namespace MToon
 {
     public class MToonInspector : ShaderGUI
     {
         private const float RoundsToDegree = 360f;
-        private const float RoundsToRadian = (float) Math.PI * 2f;
+        private const float RoundsToRadian = (float)Math.PI * 2f;
 
         private static bool isAdvancedLightingPanelFoldout = false;
         private static EditorRotationUnit editorRotationUnit = EditorRotationUnit.Rounds;
-        
+
         private MaterialProperty _version;
         private MaterialProperty _blendMode;
         private MaterialProperty _bumpMap;
         private MaterialProperty _bumpScale;
         private MaterialProperty _color;
         private MaterialProperty _cullMode;
-//        private MaterialProperty _outlineCullMode;
+        //        private MaterialProperty _outlineCullMode;
         private MaterialProperty _cutoff;
 
         private MaterialProperty _debugMode;
@@ -63,7 +62,7 @@ namespace MToon
             _outlineColorMode = FindProperty(Utils.PropOutlineColorMode, properties);
             _blendMode = FindProperty(Utils.PropBlendMode, properties);
             _cullMode = FindProperty(Utils.PropCullMode, properties);
-//            _outlineCullMode = FindProperty(Utils.PropOutlineCullMode, properties);
+            //            _outlineCullMode = FindProperty(Utils.PropOutlineCullMode, properties);
             _cutoff = FindProperty(Utils.PropCutoff, properties);
             _color = FindProperty(Utils.PropColor, properties);
             _shadeColor = FindProperty(Utils.PropShadeColor, properties);
@@ -105,7 +104,7 @@ namespace MToon
             EditorGUI.BeginChangeCheck();
             {
                 _version.floatValue = Utils.VersionNumber;
-                
+
                 EditorGUILayout.LabelField("Rendering", EditorStyles.boldLabel);
                 EditorGUILayout.BeginVertical(GUI.skin.box);
                 {
@@ -115,7 +114,7 @@ namespace MToon
                         ModeChanged(materials, isBlendModeChangedByUser: true);
                     }
 
-                    if ((RenderMode) _blendMode.floatValue == RenderMode.TransparentWithZWrite)
+                    if ((RenderMode)_blendMode.floatValue == RenderMode.TransparentWithZWrite)
                     {
                         EditorGUILayout.HelpBox("TransparentWithZWrite mode can cause problems with rendering.", MessageType.Warning);
                     }
@@ -139,7 +138,7 @@ namespace MToon
                         materialEditor.TexturePropertySingleLine(new GUIContent("Shade Color", "Shade (RGB)"), _shadeTexture,
                             _shadeColor);
                     }
-                    var bm = (RenderMode) _blendMode.floatValue;
+                    var bm = (RenderMode)_blendMode.floatValue;
                     if (bm == RenderMode.Cutout)
                     {
                         EditorGUILayout.Space();
@@ -194,7 +193,7 @@ namespace MToon
                                 _indirectLightIntensity.floatValue = 0.1f;
                             }
                             EditorGUILayout.EndHorizontal();
-                            
+
                             materialEditor.ShaderProperty(_shadeShift,
                                 new GUIContent("Shading Shift",
                                     "Zero is Default. Negative value increase lit area. Positive value increase shade area."));
@@ -216,25 +215,25 @@ namespace MToon
                 }
                 EditorGUILayout.EndVertical();
                 EditorGUILayout.Space();
-                
+
                 EditorGUILayout.LabelField("Emission", EditorStyles.boldLabel);
                 EditorGUILayout.BeginVertical(GUI.skin.box);
                 {
                     TextureWithHdrColor(materialEditor, "Emission", "Emission (RGB)",
                         _emissionMap, _emissionColor);
-                    
+
                     materialEditor.TexturePropertySingleLine(new GUIContent("MatCap", "MatCap Texture (RGB)"),
                         _sphereAdd);
                 }
                 EditorGUILayout.EndVertical();
                 EditorGUILayout.Space();
-                    
+
                 EditorGUILayout.LabelField("Rim", EditorStyles.boldLabel);
                 EditorGUILayout.BeginVertical(GUI.skin.box);
                 {
                     TextureWithHdrColor(materialEditor, "Color", "Rim Color (RGB)",
                         _rimTexture, _rimColor);
-                    
+
                     materialEditor.DefaultShaderProperty(_rimLightingMix, "Lighting Mix");
 
                     materialEditor.ShaderProperty(_rimFresnelPower,
@@ -259,14 +258,14 @@ namespace MToon
                         {
                             ModeChanged(materials);
                         }
-                        
-                        if ((RenderMode) _blendMode.floatValue == RenderMode.Transparent &&
-                            (OutlineWidthMode) _outlineWidthMode.floatValue != OutlineWidthMode.None)
+
+                        if ((RenderMode)_blendMode.floatValue == RenderMode.Transparent &&
+                            (OutlineWidthMode)_outlineWidthMode.floatValue != OutlineWidthMode.None)
                         {
                             EditorGUILayout.HelpBox("Outline with Transparent material cause problem with rendering.", MessageType.Warning);
                         }
 
-                        var widthMode = (OutlineWidthMode) _outlineWidthMode.floatValue;
+                        var widthMode = (OutlineWidthMode)_outlineWidthMode.floatValue;
                         if (widthMode != OutlineWidthMode.None)
                         {
                             materialEditor.TexturePropertySingleLine(
@@ -283,7 +282,7 @@ namespace MToon
 
                     EditorGUILayout.LabelField("Color", EditorStyles.boldLabel);
                     {
-                        var widthMode = (OutlineWidthMode) _outlineWidthMode.floatValue;
+                        var widthMode = (OutlineWidthMode)_outlineWidthMode.floatValue;
                         if (widthMode != OutlineWidthMode.None)
                         {
                             EditorGUI.BeginChangeCheck();
@@ -293,7 +292,7 @@ namespace MToon
                                 ModeChanged(materials);
                             }
 
-                            var colorMode = (OutlineColorMode) _outlineColorMode.floatValue;
+                            var colorMode = (OutlineColorMode)_outlineColorMode.floatValue;
 
                             materialEditor.ShaderProperty(_outlineColor, "Color");
                             if (colorMode == OutlineColorMode.MixedLighting)
@@ -304,7 +303,7 @@ namespace MToon
                 EditorGUILayout.EndVertical();
                 EditorGUILayout.Space();
 
-                
+
                 EditorGUILayout.LabelField("UV Coordinates", EditorStyles.boldLabel);
                 EditorGUILayout.BeginVertical(GUI.skin.box);
                 {
@@ -331,7 +330,7 @@ namespace MToon
                             var popupControl = new Rect(control);
                             popupControl.x = floatControl.x + floatControl.width + popupMargin;
                             popupControl.width = popupWidth;
-                            
+
                             EditorGUI.BeginChangeCheck();
                             var inspectorRotationValue = GetInspectorRotationValue(editorRotationUnit, _uvAnimRotation.floatValue);
                             inspectorRotationValue = EditorGUI.FloatField(floatControl, "Rotation value (per second)", inspectorRotationValue);
@@ -340,14 +339,14 @@ namespace MToon
                                 materialEditor.RegisterPropertyChangeUndo("UvAnimRotationValueChanged");
                                 _uvAnimRotation.floatValue = GetRawRotationValue(editorRotationUnit, inspectorRotationValue);
                             }
-                            editorRotationUnit = (EditorRotationUnit) EditorGUI.EnumPopup(popupControl, editorRotationUnit);
+                            editorRotationUnit = (EditorRotationUnit)EditorGUI.EnumPopup(popupControl, editorRotationUnit);
                         }
                     }
                 }
                 EditorGUILayout.EndVertical();
                 EditorGUILayout.Space();
-                
-                
+
+
                 EditorGUILayout.LabelField("Options", EditorStyles.boldLabel);
                 EditorGUILayout.BeginVertical(GUI.skin.box);
                 {
@@ -363,7 +362,7 @@ namespace MToon
                     EditorGUILayout.LabelField("Advanced Options", EditorStyles.boldLabel);
                     {
 #if UNITY_5_6_OR_NEWER
-//                    materialEditor.EnableInstancingField();
+                        //                    materialEditor.EnableInstancingField();
                         materialEditor.DoubleSidedGIField();
 #endif
                         EditorGUI.BeginChangeCheck();
@@ -399,7 +398,7 @@ namespace MToon
         {
             EditorGUI.showMixedValue = property.hasMixedValue;
             EditorGUI.BeginChangeCheck();
-            var ret = EditorGUILayout.Popup(name, (int) property.floatValue, Enum.GetNames(typeof(T)));
+            var ret = EditorGUILayout.Popup(name, (int)property.floatValue, Enum.GetNames(typeof(T)));
             var changed = EditorGUI.EndChangeCheck();
             if (changed)
             {
@@ -423,7 +422,7 @@ namespace MToon
                     maxExposureValue: 10),
 #endif
                 showAlpha: false);
-            
+
         }
 
         private static float GetRawRotationValue(EditorRotationUnit unit, float inspectorValue)

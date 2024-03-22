@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace MToon
@@ -101,7 +100,7 @@ namespace MToon
 
         private static Texture2D GetTexture(Material material, string propertyName)
         {
-            return (Texture2D) material.GetTexture(propertyName);
+            return (Texture2D)material.GetTexture(propertyName);
         }
 
         private static RenderMode GetBlendMode(Material material)
@@ -131,7 +130,7 @@ namespace MToon
 
         private static CullMode GetCullMode(Material material)
         {
-            switch ((CullMode) material.GetInt(PropCullMode))
+            switch ((CullMode)material.GetInt(PropCullMode))
             {
                 case CullMode.Off:
                     return CullMode.Off;
@@ -149,7 +148,7 @@ namespace MToon
         {
             if (material.IsKeywordEnabled(KeyOutlineWidthWorld)) return OutlineWidthMode.WorldCoordinates;
             if (material.IsKeywordEnabled(KeyOutlineWidthScreen)) return OutlineWidthMode.ScreenCoordinates;
-            
+
             return OutlineWidthMode.None;
         }
 
@@ -157,7 +156,7 @@ namespace MToon
         {
             if (material.IsKeywordEnabled(KeyOutlineColorFixed)) return OutlineColorMode.FixedColor;
             if (material.IsKeywordEnabled(KeyOutlineColorMixed)) return OutlineColorMode.MixedLighting;
-            
+
             return OutlineColorMode.FixedColor;
         }
 

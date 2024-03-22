@@ -10,12 +10,12 @@ namespace UniGLTF
     public sealed class AutoGltfFileParser
     {
         private readonly string _path;
-        
+
         public AutoGltfFileParser(string path)
         {
             _path = path;
         }
-        
+
         public GltfData Parse()
         {
             var ext = Path.GetExtension(_path).ToLower();
@@ -23,7 +23,7 @@ namespace UniGLTF
             {
                 case ".gltf":
                     return new GltfFileWithResourceFilesParser(_path).Parse();
-                
+
                 case ".zip":
                     return new ZipArchivedGltfFileParser(_path).Parse();
 

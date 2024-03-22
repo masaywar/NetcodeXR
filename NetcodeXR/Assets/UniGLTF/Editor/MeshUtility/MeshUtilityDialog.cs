@@ -1,9 +1,9 @@
-using UnityEngine;
-using UnityEditor;
-using UniGLTF.M17N;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System;
+using UniGLTF.M17N;
+using UnityEditor;
+using UnityEngine;
 
 
 namespace UniGLTF.MeshUtility

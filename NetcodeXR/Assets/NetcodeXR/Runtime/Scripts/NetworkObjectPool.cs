@@ -1,16 +1,13 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using Unity.Netcode;
 using UnityEngine;
-using UnityEngine.Pool;
-using System;
 using UnityEngine.Assertions;
-using UnityEngine.UI;
+using UnityEngine.Pool;
 
 namespace NetcodeXR
 {
-     /// <summary>
+    /// <summary>
     /// Object Pool for networked objects, used for controlling how objects are spawned by Netcode. Netcode by default
     /// will allocate new memory when spawning new objects. With this Networked Pool, we're using the ObjectPool to
     /// reuse objects.
@@ -92,8 +89,7 @@ namespace NetcodeXR
             var networkObject = m_PooledObjects[prefab].Get();
 
             var noTransform = networkObject.transform;
-            noTransform.position = position;
-            noTransform.rotation = rotation;
+            noTransform.SetPositionAndRotation(position, rotation);
 
             return networkObject;
         }
@@ -126,8 +122,8 @@ namespace NetcodeXR
             void ActionOnRelease(NetworkObject networkObject)
             {
                 networkObject.gameObject.SetActive(false);
-                
-                if(IsServer && networkObject.IsSpawned)
+
+                if (IsServer && networkObject.IsSpawned)
                 {
                     networkObject.Despawn(false);
                 }

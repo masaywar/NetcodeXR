@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using System.Linq;
+using System.Runtime.InteropServices;
 
 
 namespace UniJSON
 {
-    public interface IUtf8String: IEnumerable<Byte>
+    public interface IUtf8String : IEnumerable<Byte>
     {
         int ByteLength { get; }
     }

@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 
 namespace UniGLTF.UniUnlit
@@ -16,10 +14,10 @@ namespace UniGLTF.UniUnlit
         private MaterialProperty _blendMode;
         private MaterialProperty _cullMode;
         private MaterialProperty _vColBlendMode;
-//        private MaterialProperty _srcBlend;
-//        private MaterialProperty _dstBlend;
-//        private MaterialProperty _zWrite;
-        
+        //        private MaterialProperty _srcBlend;
+        //        private MaterialProperty _dstBlend;
+        //        private MaterialProperty _zWrite;
+
         public override void OnGUI(MaterialEditor materialEditor, MaterialProperty[] properties)
         {
             _mainTex = FindProperty(UniUnlitUtil.PropNameMainTex, properties);
@@ -28,12 +26,12 @@ namespace UniGLTF.UniUnlit
             _blendMode = FindProperty(UniUnlitUtil.PropNameBlendMode, properties);
             _cullMode = FindProperty(UniUnlitUtil.PropNameCullMode, properties);
             _vColBlendMode = FindProperty(UniUnlitUtil.PropNameVColBlendMode, properties);
-//            _srcBlend = FindProperty(PropNameSrcBlend, properties);
-//            _dstBlend = FindProperty(PropNameDstBlend, properties);
-//            _zWrite = FindProperty(PropNameZWrite, properties);
+            //            _srcBlend = FindProperty(PropNameSrcBlend, properties);
+            //            _dstBlend = FindProperty(PropNameDstBlend, properties);
+            //            _zWrite = FindProperty(PropNameZWrite, properties);
 
             var materials = materialEditor.targets.Select(x => x as Material).ToArray();
-            
+
             EditorGUI.BeginChangeCheck();
             {
                 DrawRenderingBox(materialEditor, materials);
@@ -48,14 +46,14 @@ namespace UniGLTF.UniUnlit
             var blendMode = UniUnlitRenderMode.Opaque;
             if (material.HasProperty(UniUnlitUtil.PropNameStandardShadersRenderMode)) // from Standard shader
             {
-                blendMode = (UniUnlitRenderMode) Math.Min(2f, material.GetFloat(UniUnlitUtil.PropNameStandardShadersRenderMode));
+                blendMode = (UniUnlitRenderMode)Math.Min(2f, material.GetFloat(UniUnlitUtil.PropNameStandardShadersRenderMode));
             }
 
             // assigns UniUnlit's properties...
             base.AssignNewShaderToMaterial(material, oldShader, newShader);
 
             // take over old value
-            material.SetFloat(UniUnlitUtil.PropNameBlendMode, (float) blendMode);
+            material.SetFloat(UniUnlitUtil.PropNameBlendMode, (float)blendMode);
 
             UniUnlitUtil.ValidateProperties(material, isRenderModeChangedByUser: true);
         }
@@ -75,7 +73,7 @@ namespace UniGLTF.UniUnlit
                 }
                 EditorGUILayout.Space();
 
-                switch ((UniUnlitRenderMode) _blendMode.floatValue)
+                switch ((UniUnlitRenderMode)_blendMode.floatValue)
                 {
                     case UniUnlitRenderMode.Cutout:
                         materialEditor.ShaderProperty(_cutoff, "Cutoff");
@@ -88,7 +86,7 @@ namespace UniGLTF.UniUnlit
             EditorGUILayout.EndVertical();
             EditorGUILayout.Space();
         }
-        
+
         private void DrawColorBox(MaterialEditor materialEditor, Material[] materials)
         {
             EditorGUILayout.LabelField("Color", EditorStyles.boldLabel);
@@ -97,7 +95,7 @@ namespace UniGLTF.UniUnlit
                 materialEditor.TexturePropertySingleLine(new GUIContent("Main Tex", "(RGBA)"), _mainTex, _color);
                 materialEditor.TextureScaleOffsetProperty(_mainTex);
                 EditorGUILayout.Space();
-                
+
                 if (PopupEnum<UniUnlitVertexColorBlendOp>("Vertex Color Blend Mode", _vColBlendMode, materialEditor))
                 {
                     ModeChanged(materials, isRenderModeChangedByUser: true);
@@ -112,27 +110,27 @@ namespace UniGLTF.UniUnlit
             EditorGUILayout.LabelField("Options", EditorStyles.boldLabel);
             EditorGUILayout.BeginVertical(GUI.skin.box);
             {
-                #if UNITY_5_6_OR_NEWER
-//                    materialEditor.EnableInstancingField();
-                    materialEditor.DoubleSidedGIField();
-                #endif
-                    materialEditor.RenderQueueField();
+#if UNITY_5_6_OR_NEWER
+                //                    materialEditor.EnableInstancingField();
+                materialEditor.DoubleSidedGIField();
+#endif
+                materialEditor.RenderQueueField();
             }
             EditorGUILayout.EndVertical();
             EditorGUILayout.Space();
         }
-        
+
         private static bool PopupEnum<T>(string name, MaterialProperty property, MaterialEditor editor) where T : struct
         {
             if (!typeof(T).IsEnum) return false;
-            
+
             EditorGUI.showMixedValue = property.hasMixedValue;
             EditorGUI.BeginChangeCheck();
-            var values = (T[]) Enum.GetValues(typeof(T));
+            var values = (T[])Enum.GetValues(typeof(T));
             var names = Enum.GetNames(typeof(T));
 
-            var currInt = (int) property.floatValue;
-            var currValue = (T) Enum.ToObject(typeof(T), currInt);
+            var currInt = (int)property.floatValue;
+            var currValue = (T)Enum.ToObject(typeof(T), currInt);
             var currIndex = Array.IndexOf(values, currValue);
             var nextIndex = EditorGUILayout.Popup(name, currIndex, names);
             var changed = EditorGUI.EndChangeCheck();
@@ -140,7 +138,7 @@ namespace UniGLTF.UniUnlit
             {
                 editor.RegisterPropertyChangeUndo("EnumPopUp");
                 var nextValue = values[nextIndex];
-                var nextInt = (int) (object) nextValue;
+                var nextInt = (int)(object)nextValue;
                 property.floatValue = nextInt;
             }
             EditorGUI.showMixedValue = false;

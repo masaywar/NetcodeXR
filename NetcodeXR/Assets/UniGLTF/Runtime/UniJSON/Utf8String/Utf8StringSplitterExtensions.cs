@@ -19,15 +19,15 @@ namespace UniJSON
         public static Utf8String SplitInteger(this Utf8String src)
         {
             var i = 0;
-            if(src[0]=='+' || src[0] == '-')
+            if (src[0] == '+' || src[0] == '-')
             {
                 ++i;
             }
 
             var j = i;
-            for(; j<src.ByteLength; ++j)
+            for (; j < src.ByteLength; ++j)
             {
-                if(src[j]<'0' || src[j]>'9')
+                if (src[j] < '0' || src[j] > '9')
                 {
                     break;
                 }

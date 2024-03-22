@@ -1,8 +1,8 @@
 namespace NetcodeXR.NetcodeXREditor
 {
     using NetcodeXR.Utility.Attributes;
-    using UnityEngine;
     using UnityEditor;
+    using UnityEngine;
 
     [CustomPropertyDrawer(typeof(ConditionalHideInInspectorAttribute))]
     public class ConditionalHideInInspectorDrawer : PropertyDrawer

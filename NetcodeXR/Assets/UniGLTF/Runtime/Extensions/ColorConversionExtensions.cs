@@ -9,13 +9,13 @@ namespace UniGLTF
         public static float[] ToFloat4(this Color src, ColorSpace srcColorSpace, ColorSpace dstColorSpace)
         {
             var dst = src.ConvertColorSpace(srcColorSpace, dstColorSpace);
-            return new float[] {dst.r, dst.g, dst.b, dst.a};
+            return new float[] { dst.r, dst.g, dst.b, dst.a };
         }
 
         public static float[] ToFloat3(this Color src, ColorSpace srcColorSpace, ColorSpace dstColorSpace)
         {
             var dst = src.ConvertColorSpace(srcColorSpace, dstColorSpace);
-            return new float[] {dst.r, dst.g, dst.b};
+            return new float[] { dst.r, dst.g, dst.b };
         }
 
         public static Color ToColor4(this float[] src, ColorSpace srcColorSpace, ColorSpace dstColorSpace)

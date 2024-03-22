@@ -22,7 +22,7 @@ namespace UniGLTF
                             {
                                 var value = array[i];
                                 var inv = 1.0f / byte.MaxValue;
-                                return (value.x*inv, value.y*inv, value.z*inv, value.w*inv);
+                                return (value.x * inv, value.y * inv, value.z * inv, value.w * inv);
                             };
                         return (getter, array.Length);
                     }
@@ -34,7 +34,7 @@ namespace UniGLTF
                             {
                                 var value = array[i];
                                 var inv = 1.0f / ushort.MaxValue;
-                                return (value.x*inv, value.y*inv, value.z*inv, value.w*inv);
+                                return (value.x * inv, value.y * inv, value.z * inv, value.w * inv);
                             };
                         return (getter, array.Length);
                     }
@@ -47,10 +47,11 @@ namespace UniGLTF
                                 var value = array[i];
                                 return (value.x, value.y, value.z, value.w);
                             };
-                        return (getter, array.Length);                       
+                        return (getter, array.Length);
                     }
             }
 
-            throw new NotImplementedException($"WEIGHTS_0 not support {gltfAccessor.componentType}");        }
+            throw new NotImplementedException($"WEIGHTS_0 not support {gltfAccessor.componentType}");
+        }
     }
 }

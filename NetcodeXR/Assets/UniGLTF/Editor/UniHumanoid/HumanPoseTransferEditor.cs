@@ -49,7 +49,7 @@ namespace UniHumanoid
                 case HumanPoseTransfer.HumanPoseTransferSourceType.None:
                     serializedObject.ApplyModifiedProperties();
                     break;
-                
+
                 case HumanPoseTransfer.HumanPoseTransferSourceType.HumanPoseClip:
                     PoseClipInspector();
                     break;

@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using System;
+using UnityEngine;
 
 namespace NetcodeXR
 {
@@ -17,8 +15,8 @@ namespace NetcodeXR
         LEFTLEG_FOOT,
         LEFTLEG_BENDING,
         RIGHTLEG_FOOT,
-        RIGHTLEG_BENDING,      
-        XRORIGIN_POSITION      
+        RIGHTLEG_BENDING,
+        XRORIGIN_POSITION
     }
 
 
@@ -57,11 +55,10 @@ namespace NetcodeXR
 
         public void UpdatePositionAndRotation()
         {
-            if(m_SolverTarget == null || FollowingTarget == null)
+            if (m_SolverTarget == null || FollowingTarget == null)
                 return;
-            
-            m_SolverTarget.position = FollowingTarget.position;
-            m_SolverTarget.rotation = FollowingTarget.rotation;
+
+            m_SolverTarget.SetPositionAndRotation(FollowingTarget.position, FollowingTarget.rotation);
         }
     }
 }

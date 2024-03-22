@@ -1,10 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
-using UnityEngine.XR;
-
-using InputDevice = UnityEngine.XR.InputDevice;
 using UnityEngine.InputSystem;
+using UnityEngine.XR;
+using UnityEngine.XR.Interaction.Toolkit;
+using InputDevice = UnityEngine.XR.InputDevice;
 
 namespace NetcodeXR
 {

@@ -1,7 +1,6 @@
-﻿using System.IO;
-using NUnit.Framework;
+﻿using NUnit.Framework;
+using System.IO;
 using UniGLTF;
-using UniGLTF.Extensions.VRMC_vrm;
 using UnityEngine;
 using VRMShaders;
 

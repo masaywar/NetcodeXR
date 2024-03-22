@@ -66,7 +66,7 @@ namespace UniGLTF
         {
             path = Regex.Replace(path, @"[\u0000-\u001F\u007F]", "+");
 
-            foreach(var x in EscapeChars)
+            foreach (var x in EscapeChars)
             {
                 path = path.Replace(x, '+');
             }

@@ -1,12 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
 using Unity.Netcode;
 using Unity.Netcode.Components;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.Pool;
 using UnityEngine.XR.Interaction.Toolkit;
 
 namespace NetcodeXR
@@ -22,54 +16,59 @@ namespace NetcodeXR
 
         private void OnEnable()
         {
-       
+
             SetupXRIInteractableEvent();
         }
 
         public void SetEnable(bool set)
         {
-            GetComponent<XRBaseInteractable>().enabled = set;
-
-            m_IsInteractable = set;
+            var interactableScript = GetComponent<XRBaseInteractable>();
+            if (interactableScript != null)
+            { 
+                interactableScript.enabled = set;
+                m_IsInteractable = set;
+            }
         }
 
         private void SetupXRIInteractableEvent()
         {
             var component = GetComponent<XRBaseInteractable>();
 
-            if(component == null)
+            if (component == null)
             {
                 return;
             }
 
-            component.selectEntered.AddListener(args=>{
+            component.selectEntered.AddListener(args =>
+            {
                 SetOwnershipOnSelectEnterRpc(NetworkObjectId, NetworkManager.LocalClientId);
             });
 
-            component.selectExited.AddListener(args=>{
+            component.selectExited.AddListener(args =>
+            {
                 SetOwnershipOnSelectExitRpc(NetworkObjectId, NetworkManager.LocalClientId);
             });
         }
 
         void OnValidate()
         {
-            if(!TryGetComponent<XRBaseInteractable>(out var component))
+            if (!TryGetComponent<XRBaseInteractable>(out var component))
             {
-                
+
             }
-        }    
+        }
 
         [Rpc(SendTo.Everyone)]
         public void SetOwnershipOnSelectEnterRpc(ulong targetObjectId, ulong newOwnerId, RpcParams param = default)
         {
             var targetObject = NetworkManager.SpawnManager.SpawnedObjects[targetObjectId];
 
-            if(IsServer) 
+            if (IsServer)
             {
                 targetObject.ChangeOwnership(newOwnerId);
             }
 
-            if(newOwnerId != NetworkManager.LocalClientId)
+            if (newOwnerId != NetworkManager.LocalClientId)
             {
                 targetObject.GetComponent<NetworkInteractable>().SetEnable(false);
             }
@@ -80,7 +79,7 @@ namespace NetcodeXR
         {
             var targetObject = NetworkManager.SpawnManager.SpawnedObjects[targetObjectId];
 
-            if(IsServer) 
+            if (IsServer)
             {
                 targetObject.ChangeOwnership(newOwnerId);
             }

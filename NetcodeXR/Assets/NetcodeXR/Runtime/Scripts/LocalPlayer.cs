@@ -1,24 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace NetcodeXR
 {
-    using Utility;
-    using UnityEngine.XR.Interaction.Toolkit;
-
     public partial class LocalPlayer : MonoBehaviour
     {
         private static LocalPlayer m_Instance = null;
         public static LocalPlayer Instance => m_Instance;
 
         [SerializeField]
-        private ActionBasedControllerManager m_RightInteractorManager=null;
-        public ActionBasedControllerManager RightInteractorManager => m_RightInteractorManager; 
+        private ActionBasedControllerManager m_RightInteractorManager = null;
+        public ActionBasedControllerManager RightInteractorManager => m_RightInteractorManager;
 
         [SerializeField]
-        private ActionBasedControllerManager m_LeftInteractaorManager=null;
-        public ActionBasedControllerManager LeftInteractorManager => m_LeftInteractaorManager;        
+        private ActionBasedControllerManager m_LeftInteractaorManager = null;
+        public ActionBasedControllerManager LeftInteractorManager => m_LeftInteractaorManager;
 
         [Header("Network Player's Transform References")]
         [SerializeField]
@@ -28,7 +23,7 @@ namespace NetcodeXR
 
         private void Awake()
         {
-            if(m_Instance == null)
+            if (m_Instance == null)
             {
                 m_Instance = this;
             }
@@ -46,10 +41,10 @@ namespace NetcodeXR
         }
 
         private void OnDisable()
-        {   
+        {
             var netcodeXRManger = NetcodeXRManager.Instance;
 
-            if(netcodeXRManger != null)
+            if (netcodeXRManger != null)
                 netcodeXRManger.forceGrabChanged -= OnForceGrabChanged;
         }
 

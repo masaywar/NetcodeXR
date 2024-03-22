@@ -6,7 +6,7 @@ using UnityEditor;
 
 namespace NetcodeXR.Utility.Attributes
 {
- [CustomPropertyDrawer(typeof(ReadOnlyAttribute), true)]
+    [CustomPropertyDrawer(typeof(ReadOnlyAttribute), true)]
     public class ReadOnlyAttributeDrawer : PropertyDrawer
     {
         // Necessary since some properties tend to collapse smaller than their content

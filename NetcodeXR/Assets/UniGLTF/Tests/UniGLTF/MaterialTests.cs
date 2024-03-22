@@ -1,8 +1,7 @@
-﻿using System;
-using NUnit.Framework;
-using UnityEngine;
-using UniJSON;
+﻿using NUnit.Framework;
 using System.Linq;
+using UniJSON;
+using UnityEngine;
 using VRMShaders;
 
 namespace UniGLTF

@@ -19,14 +19,14 @@ namespace UniGLTF
             {
                 throw new ArgumentException($"no file: {zippedFilePath}");
             }
-            
+
             _zippedFilePath = zippedFilePath;
         }
-        
+
         public GltfData Parse()
         {
             var binary = File.ReadAllBytes(_zippedFilePath);
-            
+
             var zipArchive = Zip.ZipArchiveStorage.Parse(binary);
             var gltf = zipArchive.Entries.FirstOrDefault(x => x.FileName.ToLower().EndsWith(".gltf"));
             if (gltf == null)

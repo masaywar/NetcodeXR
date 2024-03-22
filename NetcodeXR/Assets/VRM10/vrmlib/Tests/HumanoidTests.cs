@@ -1,7 +1,7 @@
+using NUnit.Framework;
 using System;
 using System.IO;
 using VrmLib;
-using NUnit.Framework;
 
 namespace VrmLibTests
 {

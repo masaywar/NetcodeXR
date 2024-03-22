@@ -10,7 +10,7 @@ namespace VRMShaders.VRM10.MToon10.Runtime
         private readonly ProfilingSampler _profilingSampler = new ProfilingSampler(ProfilerTag);
 
         private readonly RenderQueueRange _renderQueueRange;
-        
+
         public MToonOutlineRenderPass(RenderPassEvent renderPassEvent, RenderQueueRange renderQueueRange)
         {
             _renderQueueRange = renderQueueRange;

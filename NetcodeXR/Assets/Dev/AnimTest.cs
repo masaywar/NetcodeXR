@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using NetcodeXR;
 using Unity.Netcode;
 using UnityEngine;
 using NetworkPlayer = NetcodeXR.NetworkPlayer;
@@ -9,7 +6,7 @@ public class AnimTest : MonoBehaviour
 {
     private void OnGUI()
     {
-        if(GUILayout.Button("Dance"))
+        if (GUILayout.Button("Dance"))
         {
             var playerObject = NetworkManager.Singleton.LocalClient.PlayerObject.GetComponent<NetworkPlayer>();
 

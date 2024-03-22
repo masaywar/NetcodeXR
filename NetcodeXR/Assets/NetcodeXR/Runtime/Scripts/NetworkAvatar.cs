@@ -1,13 +1,9 @@
 using UnityEngine;
 using Unity.Netcode;
-using System.Collections.Generic;
-using System;
 using NetcodeXR.Utility;
-using System.Collections;
 using System.Threading.Tasks;
 
 #if INSTALLED_ROOT_MOTION
-using RootMotion.FinalIK;
 using VRIK = RootMotion.FinalIK.VRIK;
 #else 
 using UnityEngine.Animations.Rigging;
@@ -15,7 +11,7 @@ using UnityEngine.Animations.Rigging;
 
 namespace NetcodeXR
 {
-    #if !INSTALLED_ROOT_MOTION
+#if !INSTALLED_ROOT_MOTION
     [Serializable]
     public class VRIK
     {
@@ -24,24 +20,24 @@ namespace NetcodeXR
         
         public Rig Rig => m_Rig;
     } 
-    #endif
-  
+#endif
+
     public class NetworkAvatar : NetworkBehaviour
     {
         [SerializeField]
         private VRIK m_IK = null;
 
-        public VRIK IK 
+        public VRIK IK
         {
-            get 
+            get
             {
-                if(m_IK == null)
+                if (m_IK == null)
                 {
-                    #if INSTALLED_ROOT_MOTION 
+#if INSTALLED_ROOT_MOTION
                     m_IK = GetComponent<VRIK>();
-                    #else
+#else
                     return null;
-                    #endif
+#endif
                 }
 
                 return m_IK;
@@ -51,11 +47,11 @@ namespace NetcodeXR
 
         [SerializeField]
         private SkinnedMeshRenderer[] m_FacialSkinnedMesh;
-        public SkinnedMeshRenderer[] FacialSkinnedMesh => m_FacialSkinnedMesh;         
+        public SkinnedMeshRenderer[] FacialSkinnedMesh => m_FacialSkinnedMesh;
 
         public void SetAllIKTargetRig(SolverTargetSynchronizer controller)
         {
-            foreach(var solver in controller.Solvers)
+            foreach (var solver in controller.Solvers)
             {
                 SetIKTargetRig(solver.TargetTag, solver.SolverTarget);
             }
@@ -63,22 +59,22 @@ namespace NetcodeXR
 
         private void SetIKTargetRig(EIKTargetTag targetTag, Transform target)
         {
-            #if INSTALLED_ROOT_MOTION
+#if INSTALLED_ROOT_MOTION
             switch (targetTag)
             {
-                case EIKTargetTag.SPINE_HEAD:  
+                case EIKTargetTag.SPINE_HEAD:
                     IK.solver.spine.headTarget = target;
                     break;
-                case EIKTargetTag.SPINE_PELVIS: 
+                case EIKTargetTag.SPINE_PELVIS:
                     IK.solver.spine.pelvisTarget = target;
                     break;
-                case EIKTargetTag.SPINE_CHEST: 
+                case EIKTargetTag.SPINE_CHEST:
                     IK.solver.spine.chestGoal = target;
                     break;
-                case EIKTargetTag.LEFTARM_HAND: 
+                case EIKTargetTag.LEFTARM_HAND:
                     IK.solver.leftArm.target = target;
                     break;
-                case EIKTargetTag.LEFTARM_BENDING: 
+                case EIKTargetTag.LEFTARM_BENDING:
                     IK.solver.leftArm.bendGoal = target;
                     break;
                 case EIKTargetTag.RIGHTARM_HAND:
@@ -87,20 +83,20 @@ namespace NetcodeXR
                 case EIKTargetTag.RIGHTARM_BENDING:
                     IK.solver.rightArm.bendGoal = target;
                     break;
-                case EIKTargetTag.LEFTLEG_FOOT: 
+                case EIKTargetTag.LEFTLEG_FOOT:
                     IK.solver.leftLeg.target = target;
                     break;
-                case EIKTargetTag.LEFTLEG_BENDING: 
+                case EIKTargetTag.LEFTLEG_BENDING:
                     IK.solver.leftLeg.bendGoal = target;
                     break;
                 case EIKTargetTag.RIGHTLEG_FOOT:
                     IK.solver.rightLeg.target = target;
                     break;
-                case EIKTargetTag.RIGHTLEG_BENDING: 
+                case EIKTargetTag.RIGHTLEG_BENDING:
                     IK.solver.rightLeg.bendGoal = target;
                     break;
             }
-            #endif
+#endif
         }
 
         public float[] GetBlendshapesValue(int index)
@@ -112,7 +108,7 @@ namespace NetcodeXR
 
             float[] temp = new float[count];
 
-            for(int k=0; k<count; ++k)
+            for (int k = 0; k < count; ++k)
             {
                 temp[k] = targetMesh.GetBlendShapeWeight(k);
             }
@@ -125,7 +121,7 @@ namespace NetcodeXR
             base.OnNetworkSpawn();
 
             var player = await LoadPlayerAsync();
-            
+
             player.SetAvatar(this);
             SetAllIKTargetRig(player.SolverTargetSynchronizer);
         }
@@ -137,9 +133,9 @@ namespace NetcodeXR
 
         private async Task<NetworkPlayer> LoadPlayerAsync()
         {
-            while(true)
+            while (true)
             {
-                if(!NetcodeXRManager.Instance.PlayerSpawnedObjects.TryGetValue(OwnerClientId, out var player))
+                if (!NetcodeXRManager.Instance.PlayerSpawnedObjects.TryGetValue(OwnerClientId, out var player))
                 {
                     await Task.Delay(20);
                     continue;

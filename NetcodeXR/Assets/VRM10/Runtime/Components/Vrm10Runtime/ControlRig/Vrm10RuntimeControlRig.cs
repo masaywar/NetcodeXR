@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UniGLTF.Utils;
 using UniHumanoid;
 using UnityEngine;
-using UniGLTF.Utils;
 
 namespace UniVRM10
 {

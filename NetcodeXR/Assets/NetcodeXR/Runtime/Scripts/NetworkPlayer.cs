@@ -1,8 +1,7 @@
 
-using UnityEngine;
-using Unity.Netcode;
-using System;
 using System.Collections;
+using Unity.Netcode;
+using UnityEngine;
 
 namespace NetcodeXR
 {
@@ -13,7 +12,7 @@ namespace NetcodeXR
         private SolverTargetSynchronizer m_SolverTargetSynchronizer;
 
         public SolverTargetSynchronizer SolverTargetSynchronizer => m_SolverTargetSynchronizer;
-       
+
 
         [SerializeField]
         private BlendShapeSynchronizer m_BlendshapeSynchronizer;
@@ -42,19 +41,19 @@ namespace NetcodeXR
 
             NetcodeXRManager.Instance.PlayerSpawnedObjects.Add(OwnerClientId, this);
 
-            if(IsOwner && NetcodeXRManager.Instance.SpawnAvatarAtStart)
+            if (IsOwner && NetcodeXRManager.Instance.SpawnAvatarAtStart)
             {
                 SpawnAvatar();
-            } 
+            }
 
-            if(IsClient)
+            if (IsClient)
                 StartCoroutine(FollowXROrigin());
         }
 
         public override void OnNetworkDespawn()
         {
             NetcodeXRManager.Instance.PlayerSpawnedObjects.Remove(OwnerClientId);
-            
+
             base.OnNetworkDespawn();
         }
 
@@ -62,7 +61,7 @@ namespace NetcodeXR
         {
             var wait = new WaitForFixedUpdate();
 
-            while(true)
+            while (true)
             {
                 var localPosition = LocalPlayer.Instance.transform.position;
                 transform.position = localPosition;
@@ -71,23 +70,21 @@ namespace NetcodeXR
             }
         }
 
-        public void SpawnAvatar(NetworkAvatar inAvatar=null)
+        public void SpawnAvatar(NetworkAvatar inAvatar = null)
         {
-            if(inAvatar == null)
+            if (inAvatar == null)
                 inAvatar = NetcodeXRManager.Instance.defaultAvatar;
 
-            if(IsHost)
+            if (IsHost)
             {
-                var spawnPosition = LocalPlayer.Instance.transform.position;
-                var spawnRotation = LocalPlayer.Instance.transform.rotation;
-
+                LocalPlayer.Instance.transform.GetPositionAndRotation(out var spawnPosition, out var spawnRotation);
                 NetworkAvatar avatar = Instantiate(inAvatar, spawnPosition, spawnRotation);
                 NetworkObject avatarNO = avatar.GetComponent<NetworkObject>();
-                
+
                 avatarNO.SpawnWithOwnership(NetworkObject.OwnerClientId);
                 avatar.SetAllIKTargetRig(m_SolverTargetSynchronizer);
             }
-            else if(IsClient)
+            else if (IsClient)
             {
                 var tempTf = LocalPlayer.Instance.transform;
                 SpawnAvatarRpc(tempTf.position, tempTf.rotation.eulerAngles);
@@ -100,14 +97,14 @@ namespace NetcodeXR
             var clientId = param.Receive.SenderClientId;
             var player = NetcodeXRManager.Instance.GetNetworkPlayerById(clientId);
 
-            NetworkAvatar avatar = Instantiate(NetcodeXRManager.Instance.defaultAvatar,initPosition, Quaternion.Euler(initRotation));
+            NetworkAvatar avatar = Instantiate(NetcodeXRManager.Instance.defaultAvatar, initPosition, Quaternion.Euler(initRotation));
             NetworkObject avatarNO = avatar.GetComponent<NetworkObject>();
-            
+
             avatarNO.SpawnWithOwnership(clientId);
 
             var avatarController = player.GetComponent<SolverTargetSynchronizer>();
 
             avatar.SetAllIKTargetRig(avatarController);
-        } 
+        }
     }
 }

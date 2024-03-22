@@ -88,7 +88,7 @@ namespace UniVRM10.FastSpringBones.System
                         count = simulateLastBone ? spring.joints.Length : spring.joints.Length - 1,
                     },
                     centerTransformIndex = spring.center ? transformIndexDictionary[spring.center] : -1,
-                    ExternalData = (BlittableExternalData*) _externalData.GetUnsafePtr()
+                    ExternalData = (BlittableExternalData*)_externalData.GetUnsafePtr()
                 };
                 blittableSprings.Add(blittableSpring);
 
@@ -108,8 +108,8 @@ namespace UniVRM10.FastSpringBones.System
                 for (var i = 0; i < (simulateLastBone ? spring.joints.Length : spring.joints.Length - 1); ++i)
                 {
                     var joint = spring.joints[i];
-                    var tailJoint = i + 1 < spring.joints.Length ? spring.joints[i + 1] : (FastSpringBoneJoint?) null;
-                    var parentJoint = i - 1 >= 0 ? spring.joints[i - 1] : (FastSpringBoneJoint?) null;
+                    var tailJoint = i + 1 < spring.joints.Length ? spring.joints[i + 1] : (FastSpringBoneJoint?)null;
+                    var parentJoint = i - 1 >= 0 ? spring.joints[i - 1] : (FastSpringBoneJoint?)null;
                     var localPosition = Vector3.zero;
                     if (tailJoint.HasValue)
                     {

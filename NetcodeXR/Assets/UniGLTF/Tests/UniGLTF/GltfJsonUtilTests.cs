@@ -1,6 +1,6 @@
 using NUnit.Framework;
-using UniJSON;
 using System.Linq;
+using UniJSON;
 
 namespace UniGLTF
 {

@@ -1,5 +1,4 @@
 ﻿using System;
-using UnityEngine;
 using UnityEngine.Rendering;
 
 namespace MToon
@@ -70,13 +69,13 @@ namespace MToon
 
         public const int DisabledIntValue = 0;
         public const int EnabledIntValue = 1;
-        
+
         public static RenderQueueRequirement GetRenderQueueRequirement(RenderMode renderMode)
         {
             const int shaderDefaultQueue = -1;
             const int firstTransparentQueue = 2501;
             const int spanOfQueue = 50;
-            
+
             switch (renderMode)
             {
                 case RenderMode.Opaque:
@@ -89,16 +88,16 @@ namespace MToon
                 case RenderMode.Cutout:
                     return new RenderQueueRequirement()
                     {
-                        DefaultValue = (int) RenderQueue.AlphaTest,
-                        MinValue = (int) RenderQueue.AlphaTest,
-                        MaxValue = (int) RenderQueue.AlphaTest,
+                        DefaultValue = (int)RenderQueue.AlphaTest,
+                        MinValue = (int)RenderQueue.AlphaTest,
+                        MaxValue = (int)RenderQueue.AlphaTest,
                     };
                 case RenderMode.Transparent:
                     return new RenderQueueRequirement()
                     {
-                        DefaultValue = (int) RenderQueue.Transparent,
-                        MinValue = (int) RenderQueue.Transparent - spanOfQueue + 1,
-                        MaxValue = (int) RenderQueue.Transparent,
+                        DefaultValue = (int)RenderQueue.Transparent,
+                        MinValue = (int)RenderQueue.Transparent - spanOfQueue + 1,
+                        MaxValue = (int)RenderQueue.Transparent,
                     };
                 case RenderMode.TransparentWithZWrite:
                     return new RenderQueueRequirement()
@@ -111,6 +110,6 @@ namespace MToon
                     throw new ArgumentOutOfRangeException("renderMode", renderMode, null);
             }
         }
-        
+
     }
 }

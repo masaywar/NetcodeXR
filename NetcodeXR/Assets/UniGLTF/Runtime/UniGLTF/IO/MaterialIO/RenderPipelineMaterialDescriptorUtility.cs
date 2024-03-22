@@ -21,7 +21,7 @@ public class RenderPipelineMaterialDescriptorGeneratorUtility
         }
         return RenderPipelineTypes.Unknown;
     }
-    
+
     public static IMaterialDescriptorGenerator GetValidGLTFMaterialDescriptorGenerator()
     {
         switch (GetRenderPipelineType())

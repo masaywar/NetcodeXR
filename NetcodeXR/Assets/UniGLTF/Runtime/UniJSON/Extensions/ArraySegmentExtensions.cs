@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 
 
 namespace UniJSON
@@ -9,11 +9,11 @@ namespace UniJSON
     {
         public static T[] ArrayOrCopy<T>(this ArraySegment<T> self)
         {
-            if (self.Array == null || self.Count==0)
+            if (self.Array == null || self.Count == 0)
             {
                 return new T[] { };
             }
-            else if(self.Offset==0 && self.Count==self.Array.Length)
+            else if (self.Offset == 0 && self.Count == self.Array.Length)
             {
                 return self.Array;
             }

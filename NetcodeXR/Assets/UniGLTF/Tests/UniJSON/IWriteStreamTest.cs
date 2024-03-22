@@ -1,8 +1,7 @@
 ﻿using NUnit.Framework;
-using UniJSON;
+using System;
 using System.Linq;
 using System.Text;
-using System;
 
 namespace UniJSON
 {

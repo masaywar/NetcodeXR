@@ -1,6 +1,6 @@
+using MToon;
 using System;
 using System.Collections.Generic;
-using MToon;
 using UniGLTF;
 using UniGLTF.Extensions.VRMC_materials_mtoon;
 using UniJSON;
@@ -260,7 +260,7 @@ namespace UniVRM10
                     {
                         Index = mtoon.TextureIndexMap.SphereAdd.Value
                     };
-                    dst.MatcapFactor = new [] { 1f, 1f, 1f };
+                    dst.MatcapFactor = new[] { 1f, 1f, 1f };
                 }
                 else
                 {

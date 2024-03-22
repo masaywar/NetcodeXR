@@ -9,7 +9,7 @@ namespace UniGLTF.EditorSettingsValidator
         {
             new UnityColorSpaceSettingsValidator(),
         };
-        
+
         public bool IsValid()
         {
             return Validators.All(validator => validator.IsValid);

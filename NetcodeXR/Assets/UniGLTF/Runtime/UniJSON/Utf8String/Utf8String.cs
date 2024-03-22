@@ -225,7 +225,7 @@ namespace UniJSON
 
         public Utf8String TrimEnd()
         {
-            var i = ByteLength-1;
+            var i = ByteLength - 1;
             for (; i >= 0; --i)
             {
                 if (!IsSpace(this[i]))
@@ -233,7 +233,7 @@ namespace UniJSON
                     break;
                 }
             }
-            return Subbytes(0, i+1);
+            return Subbytes(0, i + 1);
         }
 
         public Utf8String Trim()

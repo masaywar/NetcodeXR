@@ -9,7 +9,7 @@ namespace UniHumanoid
         public class HandPose
         {
             [Obsolete("Use ThumbStretch")]
-            public float ThumbStrech { get {  return ThumbStretch; } set { ThumbStretch = value; } }
+            public float ThumbStrech { get { return ThumbStretch; } set { ThumbStretch = value; } }
             public float ThumbStretch;
             public float ThumbSpread;
 

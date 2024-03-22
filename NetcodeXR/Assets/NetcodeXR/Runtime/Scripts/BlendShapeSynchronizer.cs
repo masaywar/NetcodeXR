@@ -1,13 +1,8 @@
+using NetcodeXR.Utility;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using Unity.Netcode;
-using NetcodeXR.Utility;
-using System;
-
-
-
-
+using UnityEngine;
 
 #if INSTALLED_ROOT_MOTION
 using RootMotion.FinalIK;
@@ -19,22 +14,17 @@ namespace NetcodeXR
     {
         internal NetworkAvatar m_Avatar;
         public NetworkAvatar Avatar => m_Avatar;
-       
+
         private WaitForSeconds m_BsWait;
-
-        private void Awake()
-        {
-
-        }
 
         private void OnEnable()
         {
-            if(!NetworkManager.IsListening)
+            if (!NetworkManager.IsListening)
             {
                 return;
             }
 
-            if(!IsSpawned)
+            if (!IsSpawned)
                 return;
 
             StartCoroutine(SyncBlendshapes());
@@ -45,41 +35,41 @@ namespace NetcodeXR
             base.OnNetworkSpawn();
 
             uint tick = NetworkManager.Singleton.NetworkTickSystem.TickRate;
-            m_BsWait = new WaitForSeconds(1/tick);
+            m_BsWait = new WaitForSeconds(1 / tick);
 
-            if(IsClient)
+            if (IsClient)
                 StartCoroutine(SyncBlendshapes());
         }
 
         public IEnumerator SyncBlendshapes()
         {
-            if(!IsOwner) 
+            if (!IsOwner)
             {
                 yield break;
             }
 
-            while(m_Avatar==null)
+            while (m_Avatar == null)
             {
                 yield return m_BsWait;
             }
-            
-            Dictionary<int , float[]> tempDict = new Dictionary<int, float[]>();
+
+            Dictionary<int, float[]> tempDict = new Dictionary<int, float[]>();
             bool bsSyncFlag = m_Avatar.FacialSkinnedMesh != null && m_Avatar.FacialSkinnedMesh.Length > 0;
 
-            while(bsSyncFlag)
+            while (bsSyncFlag)
             {
                 for (int k = 0; k < m_Avatar.FacialSkinnedMesh.Length; ++k)
                 {
                     var val = m_Avatar.GetBlendshapesValue(k);
 
-                    if(!tempDict.TryAdd(k, val))
+                    if (!tempDict.TryAdd(k, val))
                     {
                         tempDict[k] = null;
                         tempDict[k] = val;
                     }
                 }
 
-                byte[] data = tempDict.SerializeToByteArray();                
+                byte[] data = tempDict.SerializeToByteArray();
                 SyncBlendshapesRpc(data);
 
                 yield return m_BsWait;
@@ -87,27 +77,27 @@ namespace NetcodeXR
         }
 
         [Rpc(SendTo.NotMe & SendTo.ClientsAndHost)]
-        public void SyncBlendshapesRpc(byte[] data, RpcParams param=default)
+        public void SyncBlendshapesRpc(byte[] data, RpcParams param = default)
         {
             var senderCliendId = param.Receive.SenderClientId;
 
             var playerObject = NetcodeXRManager.Instance.GetNetworkPlayerById(senderCliendId);
-            
-            if(playerObject.Avatar == null)
+
+            if (playerObject.Avatar == null)
             {
                 return;
             }
-          
+
             var networkAvatar = playerObject.Avatar;
             var dict = data.DeserializeFromByteArray<Dictionary<int, float[]>>();
 
             int index = 0;
 
-            foreach(var dictKey in dict.Keys)
+            foreach (var dictKey in dict.Keys)
             {
                 var skinnedValueArray = dict[dictKey];
 
-                for(int k=0; k<skinnedValueArray.Length; ++k)
+                for (int k = 0; k < skinnedValueArray.Length; ++k)
                 {
                     var val = skinnedValueArray[k];
                     networkAvatar.FacialSkinnedMesh[index].SetBlendShapeWeight(k, val);

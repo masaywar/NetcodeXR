@@ -20,7 +20,7 @@ namespace UniVRM10
         private readonly CurveMapper _horizontalInner;
         private readonly CurveMapper _verticalDown;
         private readonly CurveMapper _verticalUp;
-        
+
         public LookAtEyeDirectionApplicableToBone(Transform leftEye, Transform rightEye,
             CurveMapper horizontalOuter, CurveMapper horizontalInner, CurveMapper verticalDown, CurveMapper verticalUp)
         {
@@ -39,7 +39,7 @@ namespace UniVRM10
             _verticalDown = verticalDown;
             _verticalUp = verticalUp;
         }
-        
+
         public void Apply(LookAtEyeDirection eyeDirection, Dictionary<ExpressionKey, float> actualWeights)
         {
             SetYawPitchToBones(eyeDirection);

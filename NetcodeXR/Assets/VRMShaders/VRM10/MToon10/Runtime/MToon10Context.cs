@@ -19,12 +19,12 @@ namespace VRMShaders.VRM10.MToon10.Runtime
         // Rendering
         public MToon10AlphaMode AlphaMode
         {
-            get => (MToon10AlphaMode) _material.GetInt(MToon10Prop.AlphaMode);
+            get => (MToon10AlphaMode)_material.GetInt(MToon10Prop.AlphaMode);
         }
 
         public MToon10TransparentWithZWriteMode TransparentWithZWriteMode
         {
-            get => (MToon10TransparentWithZWriteMode) _material.GetInt(MToon10Prop.TransparentWithZWrite);
+            get => (MToon10TransparentWithZWriteMode)_material.GetInt(MToon10Prop.TransparentWithZWrite);
         }
 
         public float AlphaCutoff
@@ -39,7 +39,7 @@ namespace VRMShaders.VRM10.MToon10.Runtime
 
         public MToon10DoubleSidedMode DoubleSidedMode
         {
-            get => (MToon10DoubleSidedMode) _material.GetInt(MToon10Prop.DoubleSided);
+            get => (MToon10DoubleSidedMode)_material.GetInt(MToon10Prop.DoubleSided);
         }
 
         // Lighting
@@ -148,7 +148,7 @@ namespace VRMShaders.VRM10.MToon10.Runtime
         // Outline
         public MToon10OutlineMode OutlineWidthMode
         {
-            get => (MToon10OutlineMode) _material.GetInt(MToon10Prop.OutlineWidthMode);
+            get => (MToon10OutlineMode)_material.GetInt(MToon10Prop.OutlineWidthMode);
         }
 
         public float OutlineWidthFactor

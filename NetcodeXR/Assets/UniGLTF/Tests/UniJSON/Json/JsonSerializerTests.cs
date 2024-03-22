@@ -1,8 +1,8 @@
 #pragma warning disable 0649
-using System;
-using System.Linq;
 using NUnit.Framework;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UniGLTF;
 
 namespace UniJSON

@@ -10,8 +10,8 @@ namespace VRMShaders
     public sealed class RuntimeOnlyAwaitCaller : IAwaitCaller
     {
         private readonly NextFrameTaskScheduler _scheduler;
-        private readonly float                  _timeOutInSeconds;
-        private          float                  _lastTimeoutBaseTime;
+        private readonly float _timeOutInSeconds;
+        private float _lastTimeoutBaseTime;
 
         /// <summary>
         /// タイムアウト指定可能なコンストラクタ

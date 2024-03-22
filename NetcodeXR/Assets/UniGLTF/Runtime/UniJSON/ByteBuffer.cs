@@ -29,7 +29,8 @@ namespace UniJSON
 
         public int Remain
         {
-            get {
+            get
+            {
                 if (m_buffer == null) return 0;
                 return m_buffer.Length - m_used;
             }

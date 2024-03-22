@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using VRMShaders.VRM10.MToon10.Runtime;
 
 namespace VRMShaders.VRM10.MToon10.Runtime
 {

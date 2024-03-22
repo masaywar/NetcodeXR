@@ -1,6 +1,5 @@
 ﻿using System;
 using Unity.Jobs;
-using UnityEngine;
 using UnityEngine.Jobs;
 
 namespace UniVRM10.FastSpringBones.System
@@ -21,12 +20,12 @@ namespace UniVRM10.FastSpringBones.System
             {
                 return handle;
             }
-            
+
             handle = new PullTransformJob
-                {
-                    Transforms = _bufferCombiner.Transforms
-                }.Schedule(_bufferCombiner.TransformAccessArray, handle);
-            
+            {
+                Transforms = _bufferCombiner.Transforms
+            }.Schedule(_bufferCombiner.TransformAccessArray, handle);
+
             handle = new UpdateFastSpringBoneJob
             {
                 Colliders = _bufferCombiner.Colliders,
@@ -38,9 +37,9 @@ namespace UniVRM10.FastSpringBones.System
             }.Schedule(_bufferCombiner.Springs.Length, 1, handle);
 
             handle = new PushTransformJob
-                {
-                    Transforms = _bufferCombiner.Transforms
-                }.Schedule(_bufferCombiner.TransformAccessArray, handle);
+            {
+                Transforms = _bufferCombiner.Transforms
+            }.Schedule(_bufferCombiner.TransformAccessArray, handle);
 
             return handle;
         }

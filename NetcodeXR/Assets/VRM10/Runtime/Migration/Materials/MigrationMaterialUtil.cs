@@ -43,7 +43,7 @@ namespace UniVRM10
             catch (Exception)
             {
                 Debug.LogWarning($"Migration Warning: BaseColorFactor fallback default.");
-                return new float[] {1, 1, 1, 1};
+                return new float[] { 1, 1, 1, 1 };
             }
         }
 

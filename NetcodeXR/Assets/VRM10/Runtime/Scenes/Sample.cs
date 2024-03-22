@@ -1,8 +1,6 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using UnityEngine;
 using VrmLib;
-using UniGLTF;
 
 
 namespace UniVRM10.Sample

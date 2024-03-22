@@ -1,13 +1,12 @@
-﻿using UnityEditor;
-using UnityEngine;
-using UniGLTF;
+﻿using System.Collections.Generic;
 using System.IO;
-using UniGLTF.MeshUtility;
 using System.Linq;
-using System.Collections.Generic;
+using UniGLTF;
+using UniGLTF.MeshUtility;
+using UnityEditor;
+using UnityEngine;
 using VRMShaders;
 #if UNITY_2020_2_OR_NEWER
-using UnityEditor.AssetImporters;
 #else
 using UnityEditor.Experimental.AssetImporters;
 #endif

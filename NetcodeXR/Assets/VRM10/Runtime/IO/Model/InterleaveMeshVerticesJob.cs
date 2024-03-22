@@ -20,7 +20,7 @@ namespace UniVRM10
     {
         [WriteOnly]
         private NativeSlice<MeshVertex0> _vertices0;
-        
+
         [WriteOnly]
         private NativeSlice<MeshVertex1> _vertices1;
 

@@ -29,7 +29,7 @@ namespace UniGLTF
                 new Dictionary<string, float>(),
                 new Dictionary<string, Color>(),
                 new Dictionary<string, Vector4>(),
-                new Action<Material>[]{});
+                new Action<Material>[] { });
         }
 
         public MaterialDescriptor GetGltfDefault()

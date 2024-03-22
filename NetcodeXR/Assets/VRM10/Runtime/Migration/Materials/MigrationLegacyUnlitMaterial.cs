@@ -60,31 +60,31 @@ namespace UniVRM10
                     unlitMaterial.pbrMetallicRoughness.baseColorTexture = null;
                     return unlitMaterial;
                 case "Unlit/Texture":
-                    unlitMaterial.pbrMetallicRoughness.baseColorFactor = new float[] {1, 1, 1, 1};
+                    unlitMaterial.pbrMetallicRoughness.baseColorFactor = new float[] { 1, 1, 1, 1 };
                     unlitMaterial.pbrMetallicRoughness.baseColorTexture = MigrationMaterialUtil.GetBaseColorTexture(vrm0XMaterial);
                     return unlitMaterial;
                 case "Unlit/Transparent":
-                    unlitMaterial.pbrMetallicRoughness.baseColorFactor = new float[] {1, 1, 1, 1};
+                    unlitMaterial.pbrMetallicRoughness.baseColorFactor = new float[] { 1, 1, 1, 1 };
                     unlitMaterial.pbrMetallicRoughness.baseColorTexture = MigrationMaterialUtil.GetBaseColorTexture(vrm0XMaterial);
                     unlitMaterial.alphaMode = "BLEND";
                     return unlitMaterial;
                 case "Unlit/Transparent Cutout":
-                    unlitMaterial.pbrMetallicRoughness.baseColorFactor = new float[] {1, 1, 1, 1};
+                    unlitMaterial.pbrMetallicRoughness.baseColorFactor = new float[] { 1, 1, 1, 1 };
                     unlitMaterial.pbrMetallicRoughness.baseColorTexture = MigrationMaterialUtil.GetBaseColorTexture(vrm0XMaterial);
                     unlitMaterial.alphaMode = "MASK";
                     unlitMaterial.alphaCutoff = MigrationMaterialUtil.GetCutoff(vrm0XMaterial);
                     return unlitMaterial;
                 case "VRM/UnlitTexture":
-                    unlitMaterial.pbrMetallicRoughness.baseColorFactor = new float[] {1, 1, 1, 1};
+                    unlitMaterial.pbrMetallicRoughness.baseColorFactor = new float[] { 1, 1, 1, 1 };
                     unlitMaterial.pbrMetallicRoughness.baseColorTexture = MigrationMaterialUtil.GetBaseColorTexture(vrm0XMaterial);
                     return unlitMaterial;
                 case "VRM/UnlitTransparent":
-                    unlitMaterial.pbrMetallicRoughness.baseColorFactor = new float[] {1, 1, 1, 1};
+                    unlitMaterial.pbrMetallicRoughness.baseColorFactor = new float[] { 1, 1, 1, 1 };
                     unlitMaterial.pbrMetallicRoughness.baseColorTexture = MigrationMaterialUtil.GetBaseColorTexture(vrm0XMaterial);
                     unlitMaterial.alphaMode = "BLEND";
                     return unlitMaterial;
                 case "VRM/UnlitCutout":
-                    unlitMaterial.pbrMetallicRoughness.baseColorFactor = new float[] {1, 1, 1, 1};
+                    unlitMaterial.pbrMetallicRoughness.baseColorFactor = new float[] { 1, 1, 1, 1 };
                     unlitMaterial.pbrMetallicRoughness.baseColorTexture = MigrationMaterialUtil.GetBaseColorTexture(vrm0XMaterial);
                     unlitMaterial.alphaMode = "MASK";
                     unlitMaterial.alphaCutoff = MigrationMaterialUtil.GetCutoff(vrm0XMaterial);

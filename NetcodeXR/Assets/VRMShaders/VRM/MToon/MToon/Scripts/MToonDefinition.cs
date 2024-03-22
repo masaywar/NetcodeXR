@@ -36,14 +36,14 @@ namespace MToon
         public Texture2D ShadeMultiplyTexture;
         public float CutoutThresholdValue;
     }
-    
+
     public class LightingDefinition
     {
         public LitAndShadeMixingDefinition LitAndShadeMixing;
         public LightingInfluenceDefinition LightingInfluence;
         public NormalDefinition Normal;
     }
-    
+
     public class LitAndShadeMixingDefinition
     {
         public float ShadingShiftValue;

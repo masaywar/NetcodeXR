@@ -63,7 +63,7 @@ namespace UniVRM10
         };
         public static string EscapeFilePath(this string path)
         {
-            foreach(var x in EscapeChars)
+            foreach (var x in EscapeChars)
             {
                 path = path.Replace(x, '+');
             }

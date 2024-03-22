@@ -1,6 +1,6 @@
-﻿using UnityEngine;
-using System.Linq;
+﻿using System.Linq;
 using UniGLTF.Utils;
+using UnityEngine;
 
 namespace UniHumanoid
 {
@@ -94,7 +94,7 @@ namespace UniHumanoid
         private void Awake()
         {
             if (Bones == null
-                || Bones.All(x => x==null))
+                || Bones.All(x => x == null))
             {
                 GetBones();
             }

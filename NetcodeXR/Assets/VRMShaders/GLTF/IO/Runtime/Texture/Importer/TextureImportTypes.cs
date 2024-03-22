@@ -1,7 +1,4 @@
-﻿using System;
-using UnityEngine;
-
-namespace VRMShaders
+﻿namespace VRMShaders
 {
     public enum TextureImportTypes
     {

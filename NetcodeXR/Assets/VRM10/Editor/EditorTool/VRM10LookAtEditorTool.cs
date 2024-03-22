@@ -46,7 +46,7 @@ namespace UniVRM10
 
         public override void OnToolGUI(EditorWindow window)
         {
-            if(Selection.activeTransform==null)
+            if (Selection.activeTransform == null)
             {
                 return;
             }

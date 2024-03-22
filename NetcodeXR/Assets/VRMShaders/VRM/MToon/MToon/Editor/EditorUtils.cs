@@ -1,6 +1,5 @@
 using System.IO;
 using System.Text.RegularExpressions;
-using UnityEditor;
 using UnityEngine;
 
 namespace MToon
@@ -21,7 +20,7 @@ namespace MToon
             UpdateReadMeFile(version);
             UpdateVersionFile(version);
         }
-        
+
         private static void UpdateShaderFile(string version)
         {
             var file = File.ReadAllText(ShaderFilePath);
@@ -32,11 +31,11 @@ namespace MToon
             );
             File.WriteAllText(ShaderFilePath, file);
         }
-        
+
         private static void UpdateReadMeFile(string version)
         {
             version = "v" + version.Substring(0, version.Length - 1) + "." + version[version.Length - 1];
-            
+
             var file = File.ReadAllText(ReadMeFilePath);
             file = Regex.Replace(
                 file,
@@ -55,7 +54,7 @@ namespace MToon
                 "${1}" + version + "${3}"
             );
             File.WriteAllText(VersionFilePath, file);
-            
+
         }
     }
 }

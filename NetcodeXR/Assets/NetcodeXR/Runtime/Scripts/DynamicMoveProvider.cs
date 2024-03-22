@@ -1,6 +1,6 @@
 using Unity.XR.CoreUtils;
-using UnityEngine.Assertions;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.XR.Interaction.Toolkit;
 
 namespace NetcodeXR

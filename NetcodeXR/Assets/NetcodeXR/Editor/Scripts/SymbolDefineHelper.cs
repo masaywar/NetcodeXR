@@ -1,7 +1,6 @@
-using UnityEngine;
-using UnityEditor.Build;
-using UnityEditor;
 using NetcodeXR.Utility;
+using UnityEditor;
+using UnityEditor.Build;
 
 namespace NetcodeXR.NetcodeXREditor
 {
@@ -11,9 +10,9 @@ namespace NetcodeXR.NetcodeXREditor
 
         public static void AddDefineSymbol(NamedBuildTarget namedBuildTarget, string symbol)
         {
-            if(IsDefinedSymbol(namedBuildTarget, symbol)) 
+            if (IsDefinedSymbol(namedBuildTarget, symbol))
             {
-                NetcodeXRLog.Log(PREFIX +$"{symbol} is already in {namedBuildTarget.TargetName}");
+                NetcodeXRLog.Log(PREFIX + $"{symbol} is already in {namedBuildTarget.TargetName}");
 
                 return;
             }
@@ -24,7 +23,7 @@ namespace NetcodeXR.NetcodeXREditor
 
         public static void RemoveDefineSymbol(NamedBuildTarget namedBuildTarget, string symbol)
         {
-            if(!IsDefinedSymbol(namedBuildTarget, symbol))
+            if (!IsDefinedSymbol(namedBuildTarget, symbol))
             {
                 return;
             }
