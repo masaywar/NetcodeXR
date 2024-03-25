@@ -1,5 +1,26 @@
 {
     "m_Dictionary": {
-        "m_DictionaryValues": []
+        "m_DictionaryValues": [
+            {
+                "type": "System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "key": "IncludeAssemblies",
+                "value": "{\"m_Value\":\"Assembly-CSharp,FastSpringBone10,MToon,MToon.Editor,NetcodeXR.Editor,NetcodeXR.Runtime,RootMotion,RootMotionEditor,Tests,UniGLTF,UniGLTF.Editor,UniGLTF.Tests,UniGLTF.Utils,UniHumanoid,UniHumanoid.Editor,UniHumanoid.Editor.Tests,VRIKBuilder,VRM10,VRM10.Editor,VRM10.Tests,VrmLib,VrmLibTests,VRMShaders.GLTF.IO.Editor,VRMShaders.GLTF.IO.Runtime,VRMShaders.GLTF.IO.Tests,VRMShaders.GLTF.UniUnlit.Editor,VRMShaders.GLTF.UniUnlit.Runtime,VRMShaders.VRM.IO.Runtime,VRMShaders.VRM10.Format.Runtime,VRMShaders.VRM10.MToon10.Editor,VRMShaders.VRM10.MToon10.Runtime,VRMShaders.VRM10.MToon10.Tests\"}"
+            },
+            {
+                "type": "System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "key": "Path",
+                "value": "{\"m_Value\":\"{ProjectPath}\"}"
+            },
+            {
+                "type": "System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "key": "HistoryPath",
+                "value": "{\"m_Value\":\"{ProjectPath}\"}"
+            },
+            {
+                "type": "System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+                "key": "EnableCodeCoverage",
+                "value": "{\"m_Value\":true}"
+            }
+        ]
     }
 }
